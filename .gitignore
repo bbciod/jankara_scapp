@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Playwright
+playwright-report/
+.cache/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Scraper debug artifacts (re-introduction guard)
+debug_*.html
+debug_*.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
