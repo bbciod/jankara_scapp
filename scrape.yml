@@ -1,0 +1,57 @@
+name: 週次 料金データ自動更新
+
+on:
+  schedule:
+    - cron: "0 17 * * 0"   # 毎週月曜 AM2時 JST（= 日曜 17:00 UTC）
+  workflow_dispatch:
+    inputs:
+      shop_ids:
+        description: "特定店舗IDのみ取得（スペース区切り、空欄=全店舗）"
+        required: false
+        default: ""
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180   # 全200店舗 × (4秒待機 + ページ読込) ≒ 最大90分。念のため3時間
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements_scraper.txt
+
+      # Playwright: Chromiumブラウザ本体とOSレベルの依存ライブラリをインストール
+      - name: Install Playwright Chromium
+        run: playwright install chromium --with-deps
+
+      - name: Run scraper
+        run: |
+          if [ -n "${{ github.event.inputs.shop_ids }}" ]; then
+            python scraper.py --shop-ids ${{ github.event.inputs.shop_ids }}
+          else
+            python scraper.py
+          fi
+
+      - name: Commit & push updated data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/shops_data.json
+          if git diff --cached --quiet; then
+            echo "データに変更なし。コミットをスキップします。"
+          else
+            TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M UTC")
+            git commit -m "chore(data): 料金データ自動更新 ${TIMESTAMP}"
+            git push
+          fi
