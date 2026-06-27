@@ -10,6 +10,10 @@ st.set_page_config(page_title="ジャンカラ料金比較", page_icon="🎤", l
 # 「すべて」選択肢用のラベル定数
 ALL_OPTION = "（すべて）"
 
+# 表示モード（ページ上部のトグルで切替）
+CARD_MODE = "🗂 カード表示"
+TABLE_MODE = "📋 一覧表（PC向け）"
+
 # プランの表記ゆれを吸収して、きれいなカテゴリーに分類する関数（変更不可）
 def classify_plan(plan_str):
     if not plan_str:
@@ -180,6 +184,14 @@ CARD_CSS = """
 st.title("🎤 ジャンカラ料金比較アプリ")
 st.markdown(CARD_CSS, unsafe_allow_html=True)
 
+# 表示モード切替（メインはカード、PCでは一覧表に切替可能）
+view_mode = st.radio(
+    "表示モード",
+    [CARD_MODE, TABLE_MODE],
+    horizontal=True,
+    key="view_mode",
+)
+
 df, update_time = load_data()
 
 if df.empty:
@@ -284,12 +296,9 @@ m2.metric("該当件数", f"{len(filtered_df):,} 件")
 m3.metric("平均料金", f"¥{int(filtered_df['_表示料金'].mean()):,}")
 
 # ──────────────────────────────────────────────────────────
-# 結果カード（ランキング表示・安い順）
+# 結果表示（モードで分岐：カード / 一覧表）
 # ──────────────────────────────────────────────────────────
-MAX_CARDS = 50
 st.subheader(f"検索結果: {len(filtered_df):,} 件 (安い順){member_note}")
-if len(filtered_df) > MAX_CARDS:
-    st.caption(f"上位 {MAX_CARDS} 件を表示しています（条件を絞ると全件に近づきます）。")
 
 other_members = [m for m in member_types if m != selected_member]
 
@@ -336,10 +345,37 @@ def _render_card(rank: int, row: pd.Series) -> str:
     )
 
 
-cards_html = "".join(
-    _render_card(i + 1, row)
-    for i, row in filtered_df.head(MAX_CARDS).iterrows()
-)
-st.markdown(cards_html, unsafe_allow_html=True)
+if view_mode == TABLE_MODE:
+    # ── 一覧表モード（PC向け・全件をテーブル表示） ──
+    price_col = f"★ {selected_member}" + ("（学生料金代用含む）" if selected_member == "学生会員" else "")
+    table_df = filtered_df.copy()
+    table_df[price_col] = table_df["_表示料金"].astype("Int64")
+    # 他会員料金も小数点なしの整数表示に
+    for m in other_members:
+        if m in table_df.columns:
+            table_df[m] = table_df[m].astype("Int64")
+
+    cols_to_show = ["都道府県", "店舗名", "時間帯", "プラン種別", "プラン詳細", "曜日", price_col]
+    cols_to_show += other_members
+    cols_to_show.append("URL")
+    cols_to_show = [c for c in cols_to_show if c in table_df.columns]
+
+    st.dataframe(
+        table_df[cols_to_show],
+        column_config={"URL": st.column_config.LinkColumn("店舗リンク")},
+        use_container_width=True,
+        hide_index=True,
+    )
+else:
+    # ── カードモード（既定・ランキング、上位50件） ──
+    MAX_CARDS = 50
+    if len(filtered_df) > MAX_CARDS:
+        st.caption(f"上位 {MAX_CARDS} 件を表示しています（条件を絞ると全件に近づきます）。")
+
+    cards_html = "".join(
+        _render_card(i + 1, row)
+        for i, row in filtered_df.head(MAX_CARDS).iterrows()
+    )
+    st.markdown(cards_html, unsafe_allow_html=True)
 
 st.caption(f"最終データ更新: {update_time}")
