@@ -14,6 +14,21 @@ ALL_OPTION = "（すべて）"
 CARD_MODE = "🗂 カード表示"
 TABLE_MODE = "📋 一覧表（PC向け）"
 
+# 都道府県の並び順（標準の都道府県コード順＝北海道→東北→関東→…→九州・沖縄）。
+# この順序にすることで地方ごとにまとまった、北からの並びになる。
+PREFECTURE_ORDER = [
+    "北海道",
+    "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
+    "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県",
+    "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県",
+    "岐阜県", "静岡県", "愛知県", "三重県",
+    "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県",
+    "鳥取県", "島根県", "岡山県", "広島県", "山口県",
+    "徳島県", "香川県", "愛媛県", "高知県",
+    "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県",
+]
+_PREF_RANK = {p: i for i, p in enumerate(PREFECTURE_ORDER)}
+
 # プランの表記ゆれを吸収して、きれいなカテゴリーに分類する関数（変更不可）
 def classify_plan(plan_str):
     if not plan_str:
@@ -201,7 +216,11 @@ if df.empty:
 member_types = ["一般", "会員", "学生", "学生会員", "シニア"]
 
 # 各フィルターの選択肢
-prefs = df["都道府県"].dropna().unique().tolist()
+# 都道府県は北から地方順（都道府県コード順）に並べる。未知の値は末尾へ。
+prefs = sorted(
+    df["都道府県"].dropna().unique().tolist(),
+    key=lambda p: _PREF_RANK.get(p, len(PREFECTURE_ORDER)),
+)
 sections = df["時間帯"].dropna().unique().tolist()
 plan_types = df["プラン種別"].dropna().unique().tolist()
 days = df["曜日"].dropna().unique().tolist()
@@ -219,7 +238,8 @@ with st.expander("🔍 検索条件", expanded=True):
 
     c1, c2, c3, c4 = st.columns(4)
     with c1:
-        selected_prefs = make_multiselect("都道府県", prefs, key="ms_pref")
+        # prefs は既に北→南（地方順）に整列済みなので sort=False で維持
+        selected_prefs = make_multiselect("都道府県", prefs, sort=False, key="ms_pref")
     with c2:
         selected_sections = make_multiselect("時間帯", sections, sort=False, key="ms_section")
     with c3:
