@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import json
+import html
 from pathlib import Path
 
 # ページ設定
@@ -123,7 +124,8 @@ def make_multiselect(label: str, options: list, sort: bool = True, key: str | No
     if key not in st.session_state:
         st.session_state[key] = [ALL_OPTION]
 
-    selected = st.sidebar.multiselect(
+    # st.multiselect は呼び出し時のコンテキスト（with st.expander / with col）に描画される。
+    selected = st.multiselect(
         label, opts, key=key,
         on_change=_enforce_all_exclusive, args=(key,),
     )
@@ -135,9 +137,48 @@ def make_multiselect(label: str, options: list, sort: bool = True, key: str | No
 
 
 # ──────────────────────────────────────────────────────────
+# カードUIのスタイル（チップ＋カード型 / 案②）
+# Streamlit はカスタムCSS変数を公開しないため、独自変数を定義し
+# prefers-color-scheme でライト/ダーク（OS設定追従）両対応にする。
+# ──────────────────────────────────────────────────────────
+CARD_CSS = """
+<style>
+:root{
+  --jk-primary:#FF4B4B; --jk-card-bg:#F0F2F6;
+  --jk-soft:rgba(0,0,0,0.07); --jk-soft-strong:rgba(0,0,0,0.10);
+}
+@media (prefers-color-scheme: dark){
+  :root{ --jk-card-bg:#262730; --jk-soft:rgba(255,255,255,0.10); --jk-soft-strong:rgba(255,255,255,0.14); }
+}
+.jk-chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 4px;}
+.jk-chip{font-size:13px;padding:3px 12px;border-radius:999px;
+  border:1px solid var(--jk-primary);color:var(--jk-primary);white-space:nowrap;}
+.jk-chip.muted{border-color:rgba(128,128,128,0.45);color:inherit;opacity:0.7;}
+.jk-card{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  flex-wrap:wrap;background:var(--jk-card-bg);
+  border-radius:12px;padding:12px 16px;margin-bottom:10px;}
+.jk-left{display:flex;align-items:center;gap:12px;flex:1 1 60%;min-width:200px;}
+.jk-rank{flex:none;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;
+  background:var(--jk-soft-strong);}
+.jk-rank.top{background:var(--jk-primary);color:#fff;}
+.jk-name{font-size:16px;font-weight:600;line-height:1.3;}
+.jk-sub{font-size:12px;opacity:0.65;margin-top:2px;}
+.jk-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+.jk-tag{font-size:11px;padding:1px 8px;border-radius:6px;background:var(--jk-soft);}
+.jk-right{text-align:right;flex:0 0 auto;}
+.jk-price{font-size:22px;font-weight:700;color:var(--jk-primary);line-height:1.1;}
+.jk-price-lbl{font-size:11px;opacity:0.6;}
+.jk-others{font-size:11px;opacity:0.65;margin-top:2px;}
+.jk-link{font-size:12px;text-decoration:none;}
+</style>
+"""
+
+# ──────────────────────────────────────────────────────────
 # メイン画面
 # ──────────────────────────────────────────────────────────
 st.title("🎤 ジャンカラ料金比較アプリ")
+st.markdown(CARD_CSS, unsafe_allow_html=True)
 
 df, update_time = load_data()
 
@@ -145,35 +186,38 @@ if df.empty:
     st.warning("データが見つかりません。スクレイピングを実行して `data/shops_data.json` を作成してください。")
     st.stop()
 
-# --- サイドバー (検索条件) ---
-st.sidebar.header("🔍 検索条件")
-
-# 都道府県フィルター
-prefs = df["都道府県"].dropna().unique().tolist()
-selected_prefs = make_multiselect("都道府県", prefs)
-
-# 時間帯フィルター
-sections = df["時間帯"].dropna().unique().tolist()
-selected_sections = make_multiselect("時間帯 (朝/昼/夜など)", sections, sort=False)
-
-# プラン種別フィルター（classify_plan によって整理済みの値を使用）
-plan_types = df["プラン種別"].dropna().unique().tolist()
-selected_plans = make_multiselect("プラン種別", plan_types)
-
-# 曜日フィルター
-days = df["曜日"].dropna().unique().tolist()
-selected_days = make_multiselect("曜日 (平日/土日祝など)", days, sort=False)
-
-st.sidebar.divider()
-
-# 会員種別選択 (ソート・強調用)
 member_types = ["一般", "会員", "学生", "学生会員", "シニア"]
-selected_member = st.sidebar.selectbox("★ あなたの会員区分", member_types, index=1)
 
-# 上限金額
-max_price = st.sidebar.number_input("上限金額 (円)", min_value=0, max_value=10000, value=5000, step=100)
+# 各フィルターの選択肢
+prefs = df["都道府県"].dropna().unique().tolist()
+sections = df["時間帯"].dropna().unique().tolist()
+plan_types = df["プラン種別"].dropna().unique().tolist()
+days = df["曜日"].dropna().unique().tolist()
 
-# --- データのフィルタリング ---
+# ──────────────────────────────────────────────────────────
+# 検索条件（画面上部の expander 内。スマホでも条件が隠れない）
+# ──────────────────────────────────────────────────────────
+with st.expander("🔍 検索条件", expanded=True):
+    top1, top2 = st.columns(2)
+    with top1:
+        # ★ 会員区分は料金列を決める主役なので最前面に
+        selected_member = st.selectbox("★ あなたの会員区分", member_types, index=1)
+    with top2:
+        max_price = st.slider("上限金額 (円)", min_value=0, max_value=10000, value=5000, step=100)
+
+    c1, c2, c3, c4 = st.columns(4)
+    with c1:
+        selected_prefs = make_multiselect("都道府県", prefs, key="ms_pref")
+    with c2:
+        selected_sections = make_multiselect("時間帯", sections, sort=False, key="ms_section")
+    with c3:
+        selected_plans = make_multiselect("プラン種別", plan_types, key="ms_plan")
+    with c4:
+        selected_days = make_multiselect("曜日", days, sort=False, key="ms_day")
+
+# ──────────────────────────────────────────────────────────
+# データのフィルタリング
+# ──────────────────────────────────────────────────────────
 filtered_df = df.copy()
 
 if selected_prefs is not None:
@@ -189,42 +233,113 @@ if selected_days is not None:
 # [Fix 3] 「学生会員」フォールバック処理
 # 学生会員が未設定(NaN)の店舗は「学生」料金で代用して比較・ソート
 # ──────────────────────────────────────────────────────────
+filtered_df = filtered_df.copy()
 if selected_member == "学生会員":
-    filtered_df = filtered_df.copy()
     filtered_df["_表示料金"] = filtered_df["学生会員"].fillna(filtered_df["学生"])
-    display_col_label = "★ 学生会員 (※学生料金で代用含む)"
+    member_note = "（※学生料金で代用含む）"
 else:
-    filtered_df = filtered_df.copy()
     filtered_df["_表示料金"] = filtered_df[selected_member]
-    display_col_label = f"★ {selected_member}"
+    member_note = ""
 
-# 料金が null のものを除外 & 上限金額以下に絞る & ソート
+# 料金が null のものを除外 & 上限金額以下に絞る & 安い順ソート
 filtered_df = filtered_df.dropna(subset=["_表示料金"])
 filtered_df = filtered_df[filtered_df["_表示料金"] <= max_price]
-filtered_df = filtered_df.sort_values(by="_表示料金", ascending=True)
+filtered_df = filtered_df.sort_values(by="_表示料金", ascending=True).reset_index(drop=True)
 
-# --- 表示の整形 ---
-st.subheader(f"検索結果: {len(filtered_df)} 件 (安い順)")
+# ──────────────────────────────────────────────────────────
+# 選択中の条件チップ（一目で現在の絞り込みがわかる）
+# ──────────────────────────────────────────────────────────
+def _chip(text: str, muted: bool = False) -> str:
+    cls = "jk-chip muted" if muted else "jk-chip"
+    return f'<span class="{cls}">{html.escape(text)}</span>'
 
-display_df = filtered_df.copy()
-display_df[display_col_label] = display_df["_表示料金"]
+chips = [
+    _chip(f"会員区分: {selected_member}"),
+    _chip(f"予算: 〜¥{max_price:,}"),
+]
+if selected_prefs:
+    chips.append(_chip("都道府県: " + "・".join(selected_prefs)))
+if selected_sections:
+    chips.append(_chip("時間帯: " + "・".join(selected_sections)))
+if selected_plans:
+    chips.append(_chip("プラン: " + "・".join(selected_plans)))
+if selected_days:
+    chips.append(_chip("曜日: " + "・".join(selected_days)))
+if not any([selected_prefs, selected_sections, selected_plans, selected_days]):
+    chips.append(_chip("エリア・条件: すべて", muted=True))
 
-# 表示するカラムの順番を整理
-cols_to_show = ["都道府県", "店舗名", "時間帯", "プラン種別", "プラン詳細", "曜日", display_col_label]
+st.markdown('<div class="jk-chips">' + "".join(chips) + "</div>", unsafe_allow_html=True)
+
+# ──────────────────────────────────────────────────────────
+# サマリー（最安・件数・平均）
+# ──────────────────────────────────────────────────────────
+if filtered_df.empty:
+    st.info("条件に合う料金プランが見つかりませんでした。条件をゆるめてみてください。")
+    st.caption(f"最終データ更新: {update_time}")
+    st.stop()
+
+m1, m2, m3 = st.columns(3)
+m1.metric("最安料金", f"¥{int(filtered_df['_表示料金'].min()):,}")
+m2.metric("該当件数", f"{len(filtered_df):,} 件")
+m3.metric("平均料金", f"¥{int(filtered_df['_表示料金'].mean()):,}")
+
+# ──────────────────────────────────────────────────────────
+# 結果カード（ランキング表示・安い順）
+# ──────────────────────────────────────────────────────────
+MAX_CARDS = 50
+st.subheader(f"検索結果: {len(filtered_df):,} 件 (安い順){member_note}")
+if len(filtered_df) > MAX_CARDS:
+    st.caption(f"上位 {MAX_CARDS} 件を表示しています（条件を絞ると全件に近づきます）。")
+
 other_members = [m for m in member_types if m != selected_member]
-cols_to_show.extend(other_members)
-cols_to_show.append("URL")
 
-# 存在しないカラムを安全に除外
-cols_to_show = [c for c in cols_to_show if c in display_df.columns]
 
-st.dataframe(
-    display_df[cols_to_show],
-    column_config={
-        "URL": st.column_config.LinkColumn("店舗リンク")
-    },
-    use_container_width=True,
-    hide_index=True
+def _render_card(rank: int, row: pd.Series) -> str:
+    price = int(row["_表示料金"])
+    rank_cls = "jk-rank top" if rank <= 3 else "jk-rank"
+
+    sub_parts = [p for p in [row.get("都道府県"), row.get("時間帯")] if p]
+    sub = "・".join(html.escape(str(p)) for p in sub_parts)
+
+    tags = []
+    for val in [row.get("プラン種別"), row.get("曜日"), row.get("プラン詳細")]:
+        if val and str(val) != "nan":
+            tags.append(f'<span class="jk-tag">{html.escape(str(val))}</span>')
+    tags_html = f'<div class="jk-tags">{"".join(tags)}</div>' if tags else ""
+
+    # 他会員区分の料金（比較用）
+    others = []
+    for m in other_members:
+        v = row.get(m)
+        if pd.notna(v):
+            others.append(f"{m} ¥{int(v):,}")
+    others_html = f'<div class="jk-others">{html.escape(" / ".join(others))}</div>' if others else ""
+
+    url = row.get("URL") or "#"
+    link_html = f'<a class="jk-link" href="{html.escape(str(url))}" target="_blank">店舗ページ ↗</a>'
+
+    return (
+        '<div class="jk-card">'
+        '<div class="jk-left">'
+        f'<div class="{rank_cls}">{rank}</div>'
+        '<div>'
+        f'<div class="jk-name">{html.escape(str(row.get("店舗名", "")))}</div>'
+        f'<div class="jk-sub">{sub}</div>'
+        f'{tags_html}'
+        '</div></div>'
+        '<div class="jk-right">'
+        f'<div class="jk-price">¥{price:,}</div>'
+        f'<div class="jk-price-lbl">{html.escape(selected_member)}</div>'
+        f'{others_html}'
+        f'{link_html}'
+        '</div></div>'
+    )
+
+
+cards_html = "".join(
+    _render_card(i + 1, row)
+    for i, row in filtered_df.head(MAX_CARDS).iterrows()
 )
+st.markdown(cards_html, unsafe_allow_html=True)
 
 st.caption(f"最終データ更新: {update_time}")
