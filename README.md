@@ -17,7 +17,7 @@
 [scraper.py]  ──>  data/shops_data.json  ──>  [app.py / Streamlit]
  取得＋パース           データ（中間成果物）           UI（閲覧・比較）
       ▲
- [scrape.yml] 週次でCI実行 → JSON を自動コミット
+ [.github/workflows/scrape.yml] 週次でCI実行 → JSON を自動コミット
 ```
 
 データは静的な JSON としてリポジトリに保存され、UI とスクレイパーはこの JSON を介して疎結合になっています。
@@ -64,7 +64,7 @@ python scraper.py --dry-run
 
 ## 定期スクレイピング
 
-[scrape.yml](scrape.yml) が以下を自動実行します（※ GitHub Actions で有効化するには `.github/workflows/` 配下への配置が必要）。
+[.github/workflows/scrape.yml](.github/workflows/scrape.yml) が以下を自動実行します。
 
 - **スケジュール**: 毎週月曜 AM2時 JST（cron `0 17 * * 0`）
 - **手動実行**: GitHub の Actions タブから起動可能（店舗ID指定可）
