@@ -6,12 +6,6 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "streamlit", "run", "app.py", "--server.port", "8501"],
       "port": 8501
-    },
-    {
-      "name": "stlite static (index.html)",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8502"],
-      "port": 8502
     }
   ]
 }
