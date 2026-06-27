@@ -77,22 +77,56 @@ def load_data():
     if not df.empty:
         df = df[~df["プラン詳細"].str.fullmatch(r"\d+", na=False)]
 
+    # [Fix 5] 曜日が金額（¥1,930 等）になっている列ズレ行を除外。
+    # 原因はスクレイパーの DAY_TYPE_RE に「日祝」が無く、日祝行で料金が day_type に
+    # 押し出されたこと（scraper.py 側で修正済み。再取得までの旧データ防衛フィルタ）。
+    if not df.empty:
+        df = df[~df["曜日"].astype(str).str.contains(r"[¥￥]|^[\d,，]+$", na=False, regex=True)]
+
     return df, latest_time
 
 
 # ──────────────────────────────────────────────────────────
 # [Fix 4] 「（すべて）」をデフォルトにするmultiselect ヘルパー
 # ──────────────────────────────────────────────────────────
-def make_multiselect(label: str, options: list, sort: bool = True) -> list | None:
+def _enforce_all_exclusive(key: str):
+    """
+    「（すべて）」と個別選択肢の排他制御（multiselect の on_change コールバック）。
+    multiselect は新しくクリックされた項目を末尾に追加するため、末尾を見て
+    どちらが最後に選ばれたかを判定する。
+      - 末尾が「（すべて）」     → ユーザーは全体を選び直した → 「（すべて）」のみに
+      - 末尾が個別選択肢        → ユーザーは個別を選んだ     → 「（すべて）」を外す
+    """
+    sel = st.session_state[key]
+    if ALL_OPTION in sel and len(sel) > 1:
+        if sel[-1] == ALL_OPTION:
+            st.session_state[key] = [ALL_OPTION]
+        else:
+            st.session_state[key] = [o for o in sel if o != ALL_OPTION]
+
+
+def make_multiselect(label: str, options: list, sort: bool = True, key: str | None = None) -> list | None:
     """
     「（すべて）」が選択されている（またはなにも選択されていない）場合は
     None を返す → 呼び出し元でフィルターをスキップ。
     それ以外は選択された実際の値のリストを返す。
+
+    「（すべて）」と47都道府県などの個別選択は排他（_enforce_all_exclusive）。
     """
     if sort:
         options = sorted(options)
     opts = [ALL_OPTION] + options
-    selected = st.sidebar.multiselect(label, opts, default=[ALL_OPTION])
+    key = key or f"ms_{label}"
+
+    # 初期値は「（すべて）」。default= ではなく session_state で初期化することで
+    # on_change コールバックによる値の上書きと両立させる。
+    if key not in st.session_state:
+        st.session_state[key] = [ALL_OPTION]
+
+    selected = st.sidebar.multiselect(
+        label, opts, key=key,
+        on_change=_enforce_all_exclusive, args=(key,),
+    )
 
     # 「（すべて）」が含まれている or 何も選んでいない → フィルター不要
     if ALL_OPTION in selected or not selected:
