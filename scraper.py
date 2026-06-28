@@ -340,10 +340,18 @@ async def scrape_shop_pw(page: Page, shop_id: str) -> dict:
     }
 
     try:
-        # ページ遷移 —— networkidle でJS完了まで待機
-        await page.goto(url, wait_until="networkidle", timeout=30_000)
+        # ページ遷移 —— まず domcontentloaded で確実に遷移する。
+        # （networkidle を goto の待機条件にすると、解析タグ等で常時通信が走る
+        #  ページでは永久に idle にならずタイムアウトする。263/269 がこれに該当。）
+        await page.goto(url, wait_until="domcontentloaded", timeout=30_000)
 
-        # 料金表テーブルが現れるまで待機（最大 PRICE_TABLE_TIMEOUT ms）
+        # JS完了の目安として networkidle をベストエフォートで待つ（失敗しても続行）
+        try:
+            await page.wait_for_load_state("networkidle", timeout=8_000)
+        except PWTimeout:
+            pass
+
+        # 料金表テーブルが現れるまで待機（最大 PRICE_TABLE_TIMEOUT ms）—— これが本命の完了判定
         try:
             await page.wait_for_selector("table", timeout=PRICE_TABLE_TIMEOUT)
         except PWTimeout:
