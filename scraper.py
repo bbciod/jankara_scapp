@@ -372,11 +372,15 @@ async def scrape_shop_pw(page: Page, shop_id: str) -> dict:
 # ──────────────────────────────────────────────────────────
 # メイン（非同期）
 # ──────────────────────────────────────────────────────────
-async def main_async(shop_list_hint: list[dict] | None):
+async def main_async(shop_list_hint: list[dict] | None, merge: bool = False):
     """
     shop_list_hint:
       - None          → Playwright でエリア一覧を巡回して全店舗URLを収集してから取得
       - list[dict]    → 収集済みリスト（--shop-ids 指定時）をそのまま使用
+    merge:
+      - False → 取得結果で data/shops_data.json を全置換（全件スクレイプ時）
+      - True  → 取得結果を既存JSONに shop_id でマージ（特定店舗の再取得時。
+                既存データを消さずに該当店舗だけ更新する）
     """
     OUTPUT_DIR.mkdir(exist_ok=True)
     all_data: list[dict] = []
@@ -434,7 +438,7 @@ async def main_async(shop_list_hint: list[dict] | None):
 
             # 途中保存（10件ごと）
             if i % 10 == 0:
-                _save(all_data)
+                _save(all_data, merge=merge)
                 log.info(f"  中間保存: {i} 件完了")
 
             # 次のリクエストまで待機
@@ -443,10 +447,11 @@ async def main_async(shop_list_hint: list[dict] | None):
 
         await browser.close()
 
-    _save(all_data)
+    saved_total = _save(all_data, merge=merge)
     log.info(
         f"\n{'='*55}\n"
-        f"✅ 完了: {len(all_data)} 店舗\n"
+        f"✅ 完了: 取得 {len(all_data)} 店舗"
+        f"{f'（既存にマージ → 全 {saved_total} 店舗）' if merge else ''}\n"
         f"   OK: {ok_count} / エラー: {error_count}\n"
         f"   保存先: {OUTPUT_FILE}\n"
         f"{'='*55}"
@@ -454,10 +459,32 @@ async def main_async(shop_list_hint: list[dict] | None):
     return all_data
 
 
-def _save(data: list[dict]):
+def _save(data: list[dict], merge: bool = False) -> int:
+    """
+    data を data/shops_data.json に保存する。
+    merge=True かつ既存ファイルがある場合は shop_id 単位でマージし、
+    今回取得分だけを上書き更新する（他店舗は温存）。
+    戻り値は保存後の総店舗数。
+    """
     OUTPUT_DIR.mkdir(exist_ok=True)
+
+    if merge and OUTPUT_FILE.exists():
+        try:
+            with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+        except Exception as e:
+            log.warning(f"既存JSONの読み込みに失敗（マージをスキップし全置換）: {e}")
+            existing = []
+        by_id: dict[str, dict] = {s.get("shop_id"): s for s in existing}
+        for rec in data:
+            by_id[rec.get("shop_id")] = rec   # 今回取得分で上書き／追加
+        out = sorted(by_id.values(), key=lambda x: str(x.get("shop_id")))
+    else:
+        out = data
+
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    return len(out)
 
 
 # ──────────────────────────────────────────────────────────
@@ -467,7 +494,13 @@ def main():
     parser = argparse.ArgumentParser(description="ジャンカラ料金表スクレイパー（Playwright版）")
     parser.add_argument(
         "--shop-ids", nargs="*",
-        help="特定の店舗IDのみ処理（例: --shop-ids 062 176）"
+        help="特定の店舗IDのみ処理（例: --shop-ids 062 176）。"
+             "この場合、結果は既存JSONに shop_id でマージされる（他店舗は温存）。"
+    )
+    parser.add_argument(
+        "--no-merge", action="store_true",
+        help="--shop-ids 指定時でもマージせず全置換する（通常は使わない。"
+             "既存データを消すため注意）。"
     )
     parser.add_argument(
         "--dry-run", action="store_true",
@@ -505,7 +538,9 @@ def main():
         print(json.dumps(collected, ensure_ascii=False, indent=2))
         return
 
-    asyncio.run(main_async(shop_list_hint))
+    # --shop-ids 指定時は既存JSONへマージ（全件スクレイプ時は全置換）
+    merge = bool(args.shop_ids) and not args.no_merge
+    asyncio.run(main_async(shop_list_hint, merge=merge))
 
 
 if __name__ == "__main__":

@@ -50,17 +50,18 @@ streamlit run app.py
 pip install -r requirements_scraper.txt
 playwright install chromium
 
-# 全店舗を取得
+# 全店舗を取得（data/shops_data.json を全置換）
 python scraper.py
 
-# 特定店舗のみ取得
-python scraper.py --shop-ids 062 176
+# 特定店舗のみ再取得（結果を既存JSONに shop_id でマージ。他店舗は温存）
+python scraper.py --shop-ids 217 263
 
 # 店舗URLの収集のみ（料金取得はスキップ）
 python scraper.py --dry-run
 ```
 
 取得結果は `data/shops_data.json` に保存されます。
+`--shop-ids` 指定時は既存データへマージするため、取得もれ店舗だけを後から安全に復旧できます（全データを上書きしません）。
 
 ## 定期スクレイピング
 
