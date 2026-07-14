@@ -10,9 +10,6 @@ env/
 playwright-report/
 .cache/
 
-# Streamlit
-.streamlit/secrets.toml
-
 # Scraper debug artifacts (re-introduction guard)
 debug_*.html
 debug_*.png

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ジャンカラ料金比較</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🎤 ジャンカラ料金比較</h1>
+  <p class="subtitle">全国のジャンカラの料金を会員区分・エリア・予算で比較できる非公式の個人用ツールです</p>
+</header>
+
+<main>
+  <div class="mode-toggle-row">
+    <div class="mode-toggle">
+      <button id="modeCardBtn" class="mode-btn active" type="button">カード表示</button>
+      <button id="modeTableBtn" class="mode-btn" type="button">一覧表表示</button>
+    </div>
+  </div>
+
+  <details class="filters" open>
+    <summary>検索条件（クリックで開閉）</summary>
+    <div class="filter-body">
+      <div class="filter-row condition-row condition-row-primary">
+        <label>★ あなたの会員区分
+          <select id="memberType"></select>
+        </label>
+        <label>予算（円以下・任意）
+          <input type="number" id="priceMax" min="0" step="100" placeholder="例: 3000">
+        </label>
+      </div>
+
+      <div class="filter-grid">
+        <div class="filter-group">
+          <p class="filter-group-label">都道府県</p>
+          <div class="chip-row" id="prefFilters"></div>
+        </div>
+        <div class="filter-group">
+          <p class="filter-group-label">時間帯</p>
+          <div class="chip-row" id="sectionFilters"></div>
+        </div>
+        <div class="filter-group">
+          <p class="filter-group-label">プラン種別</p>
+          <div class="chip-row" id="planTypeFilters"></div>
+        </div>
+        <div class="filter-group">
+          <p class="filter-group-label">曜日</p>
+          <div class="chip-row" id="dayFilters"></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <div id="conditionChips" class="condition-chips"></div>
+
+  <div class="summary-row">
+    <div class="summary-box">
+      <p class="summary-label">最安料金</p>
+      <p class="summary-value" id="summaryMin">—</p>
+    </div>
+    <div class="summary-box">
+      <p class="summary-label">該当件数</p>
+      <p class="summary-value" id="summaryCount">—</p>
+    </div>
+    <div class="summary-box">
+      <p class="summary-label">平均料金</p>
+      <p class="summary-value" id="summaryAvg">—</p>
+    </div>
+  </div>
+
+  <section class="results">
+    <div class="results-header">
+      <h2>検索結果</h2>
+      <span id="resultCount" class="result-count"></span>
+    </div>
+
+    <p id="cardNote" class="results-note"></p>
+    <div id="cardResults" class="card-results"></div>
+
+    <div id="tableResults" class="hidden">
+      <div class="table-scroll"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>
+    データは <a href="https://jankara.ne.jp/" target="_blank" rel="noopener">ジャンカラ公式サイト</a>
+    から取得した公開情報を元にした非公式の参考情報です。料金は変わることがあります。正確な情報は必ず
+    公式サイト・各店舗にご確認ください。最終更新: <span id="updatedAt"></span>
+  </p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
