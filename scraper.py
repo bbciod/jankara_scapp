@@ -117,60 +117,78 @@ def check_robots_once() -> bool:
 
 
 # ──────────────────────────────────────────────────────────
-# 全店舗URL収集（Playwright版: 一覧ページもCSRのため）（変更不可）
+# 全店舗URL収集（Playwright版: 一覧ページもCSRのため）
 # ──────────────────────────────────────────────────────────
 async def collect_all_shop_urls(page: Page) -> list[dict]:
     """
     エリア別一覧ページ（/shop/result/?a=N）から全店舗のURLとIDを収集する。
     一覧ページもNext.js/CSR構成のため Playwright で JS 描画後に DOM を取得する。
 
-    待機戦略:
-      1. networkidle で初期JS完了を待つ（変更不可）
-      2. /shop/XXX/ 形式のリンクが1件以上現れるまで最大 LIST_TIMEOUT ms 待機（変更不可）
-      3. それでも0件なら WARN を出してスキップ（推測しない）
+    待機戦略（scrape_shop_pw と統一。取りこぼし防止が目的）:
+      1. domcontentloaded で確実に遷移する。networkidle は解析タグ等で常時通信が走り
+         idle に到達せずタイムアウトし、その except でエリアが丸ごとスキップされて
+         そのエリアの全店舗が欠落する原因になるため、goto の待機条件には使わない。
+      2. networkidle は短時間ベストエフォート、店舗リンク出現待ちを本命の完了判定にする。
+      3. リンク0件のエリアは一時的な描画遅延の可能性があるため数回リトライする。
+         リトライしても0件なら該当なし or 恒常的失敗とみなす（推測しない）。
     """
-    # 店舗一覧リンクが描画されるまでの最大待機時間（ms）
-    LIST_TIMEOUT    = 12_000
-    # エリア間のウェイト（秒）— 一覧取得は店舗ページより軽いので短め
-    LIST_SLEEP_SEC  = 2.5
-    # /shop/XXX/ リンクを特定するCSSセレクタ（変更不可）
-    SHOP_LINK_SEL   = "a[href*='/shop/']"
+    LIST_TIMEOUT      = 12_000   # 店舗リンク描画待ちの最大（ms）
+    LIST_SLEEP_SEC    = 2.5      # エリア間ウェイト（秒）
+    LIST_MAX_ATTEMPTS = 3        # 0件エリアのリトライ回数（取りこぼし防止）
+    RETRY_SLEEP_SEC   = 3.0      # リトライ間ウェイト（秒）
+    SHOP_LINK_SEL     = "a[href*='/shop/']"
+
+    async def fetch_area_ids(url: str) -> list[str]:
+        """1エリアのページを描画し、/shop/XXX/ の店舗IDを列挙して返す。"""
+        # domcontentloaded で確実に遷移（networkidle は使わない。上記の理由）
+        await page.goto(url, wait_until="domcontentloaded", timeout=30_000)
+        # networkidle はベストエフォート（失敗しても続行）
+        try:
+            await page.wait_for_load_state("networkidle", timeout=8_000)
+        except PWTimeout:
+            pass
+        # 店舗リンク出現待ち（本命の完了判定）。0件の場合はここで timeout する
+        try:
+            await page.wait_for_selector(SHOP_LINK_SEL, timeout=LIST_TIMEOUT)
+        except PWTimeout:
+            pass
+        await asyncio.sleep(1.0)
+        html = await page.content()
+        soup = BeautifulSoup(html, "lxml")
+        ids: list[str] = []
+        for a_tag in soup.find_all("a", href=True):
+            m = re.search(r"/shop/(\d{3,})/", a_tag["href"])
+            if m:
+                ids.append(m.group(1))
+        return ids
 
     shops: dict[str, dict] = {}
 
     for area_id in AREA_IDS:
         url = RESULT_URL.format(area_id=area_id)
         log.info(f"エリア a={area_id} 取得中: {url}")
-        try:
-            # networkidle で初期JS完了を待つ（変更不可）
-            await page.goto(url, wait_until="networkidle", timeout=30_000)
 
-            # 店舗リンクが現れるまで待機（変更不可）
+        ids: list[str] = []
+        for attempt in range(1, LIST_MAX_ATTEMPTS + 1):
             try:
-                await page.wait_for_selector(SHOP_LINK_SEL, timeout=LIST_TIMEOUT)
-            except PWTimeout:
-                log.warning(f"  a={area_id}: 店舗リンクが時間内に描画されませんでした（該当なしの可能性）")
+                ids = await fetch_area_ids(url)
+            except Exception as e:
+                log.warning(f"  a={area_id} 取得失敗 (試行 {attempt}/{LIST_MAX_ATTEMPTS}): {e}")
+                ids = []
+            if ids:
+                break
+            if attempt < LIST_MAX_ATTEMPTS:
+                log.warning(f"  a={area_id}: 店舗リンク0件 → リトライ ({attempt}/{LIST_MAX_ATTEMPTS})")
+                await asyncio.sleep(RETRY_SLEEP_SEC)
 
-            # DOM が完全に落ち着くまで追加で少し待つ
-            await asyncio.sleep(1.0)
-
-            html = await page.content()
-            soup = BeautifulSoup(html, "lxml")
-
-            count_before = len(shops)
-            for a_tag in soup.find_all("a", href=True):
-                m = re.search(r"/shop/(\d{3,})/", a_tag["href"])
-                if m:
-                    sid = m.group(1)
-                    if sid not in shops:
-                        shops[sid] = {
-                            "shop_id": sid,
-                            "url": f"{BASE_URL}/shop/{sid}/",
-                        }
+        count_before = len(shops)
+        for sid in ids:
+            if sid not in shops:
+                shops[sid] = {"shop_id": sid, "url": f"{BASE_URL}/shop/{sid}/"}
+        if ids:
             log.info(f"  → このエリアで {len(shops) - count_before} 件追加 / 累計 {len(shops)} 店舗")
-
-        except Exception as e:
-            log.warning(f"  a={area_id} 取得失敗: {e}")
+        else:
+            log.warning(f"  a={area_id}: 0件（該当なし or 取得失敗）")
 
         await asyncio.sleep(LIST_SLEEP_SEC)
 
