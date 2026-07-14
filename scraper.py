@@ -54,8 +54,8 @@ PRICE_TABLE_TIMEOUT = 15_000   # 15秒
 # エリアID一覧（公式 /shop/ ページより）
 AREA_IDS = list(range(1, 29))  # a=1〜28
 
-# 出力
-OUTPUT_DIR  = Path("data")
+# 出力（GitHub Pages で公開する docs/ 配下へ書き出す）
+OUTPUT_DIR  = Path("docs/data")
 OUTPUT_FILE = OUTPUT_DIR / "shops_data.json"
 
 MEMBER_COLS   = ["学生会員", "学生", "会員", "シニア", "一般"]

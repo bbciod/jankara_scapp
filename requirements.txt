@@ -1,3 +1,0 @@
-# Streamlit アプリ用依存パッケージ
-streamlit
-pandas

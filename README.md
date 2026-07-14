@@ -1,7 +1,8 @@
 # 🎤 ジャンカラ料金比較アプリ
 
 全国のジャンカラ（カラオケ店）の料金を、エリア・会員区分・予算などで横断的に比較できる Web アプリです。
-[jankara.ne.jp](https://jankara.ne.jp) の公開料金表を定期的にスクレイピングし、Streamlit で見やすく表示します。
+[jankara.ne.jp](https://jankara.ne.jp) の公開料金表を定期的にスクレイピングし、素の HTML/CSS/JS
+（フレームワーク不使用）の静的サイトとして GitHub Pages で公開します。
 
 ## 主な機能
 
@@ -14,35 +15,37 @@
 ## 構成
 
 ```
-[scraper.py]  ──>  data/shops_data.json  ──>  [app.py / Streamlit]
- 取得＋パース           データ（中間成果物）           UI（閲覧・比較）
-      ▲
- [.github/workflows/scrape.yml] 週次でCI実行 → JSON を自動コミット
+[scraper.py]  ──>  docs/data/shops_data.json  ──>  [docs/ の静的サイト]
+ 取得＋パース           データ（中間成果物）            UI（HTML/CSS/JS で閲覧・比較）
+      ▲                                                    ▲
+ [.github/workflows/scrape.yml] 週次でCI実行 → JSON 自動コミット   GitHub Pages（main / docs を公開）
 ```
 
-データは静的な JSON としてリポジトリに保存され、UI とスクレイパーはこの JSON を介して疎結合になっています。
+データは静的な JSON としてリポジトリ（`docs/data/`）に保存され、UI（`docs/app.js`）はブラウザ内で
+これを `fetch` して描画します。サーバー不要・DB不要で、スクレイプ→コミット→Pages 自動反映で更新されます。
 
 ## 技術スタック
 
 | 層 | 使用技術 |
 | --- | --- |
-| UI | Streamlit, pandas |
+| UI | 素の HTML / CSS / JavaScript（フレームワーク不使用） |
 | スクレイパー | Playwright（ヘッドレス Chromium）, BeautifulSoup, lxml |
 | 自動化 | GitHub Actions（週次 cron） |
-| ホスティング | Streamlit Community Cloud |
+| ホスティング | GitHub Pages（`docs/` を配信） |
 
 > 補足: 対象サイトは Next.js/React 製の SPA で、`requests` では料金表が取得できないため、JS 実行後の DOM を Playwright で取得しています。
 
 ## ローカルで動かす
 
-### 1. UI（閲覧アプリ）
+### 1. UI（閲覧サイト）
+
+`docs/` を静的配信して開くだけです（ビルド不要）。
 
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
+python -m http.server 8502 --directory docs
 ```
 
-ブラウザで http://localhost:8501 が開きます。`data/shops_data.json` があればそのまま表示されます。
+ブラウザで http://localhost:8502 を開きます。`docs/data/shops_data.json` を読み込んで表示します。
 
 ### 2. スクレイパー（データ取得）
 
@@ -60,7 +63,7 @@ python scraper.py --shop-ids 217 263
 python scraper.py --dry-run
 ```
 
-取得結果は `data/shops_data.json` に保存されます。
+取得結果は `docs/data/shops_data.json` に保存されます。
 `--shop-ids` 指定時は既存データへマージするため、取得もれ店舗だけを後から安全に復旧できます（全データを上書きしません）。
 
 ## 定期スクレイピング
@@ -69,21 +72,21 @@ python scraper.py --dry-run
 
 - **スケジュール**: 毎週月曜 AM2時 JST（cron `0 17 * * 0`）
 - **手動実行**: GitHub の Actions タブから起動可能（店舗ID指定可）
-- **処理**: 全店舗を取得 → `data/shops_data.json` を更新 → 変更があれば自動コミット＆プッシュ
+- **処理**: 全店舗を取得 → `docs/data/shops_data.json` を更新 → 変更があれば自動コミット＆プッシュ
 
 倫理・保守方針として、起動時に robots.txt を確認し、リクエスト間にウェイトを挿入しています。
 
-## デプロイ（Streamlit Community Cloud）
+## デプロイ（GitHub Pages）
 
-1. [share.streamlit.io](https://share.streamlit.io) に GitHub でログイン
-2. 「Create app」→ リポジトリ・ブランチ `main`・メインファイル `app.py` を指定
-3. Deploy
+1. リポジトリを public にする
+2. **Settings → Pages → Build and deployment** で **Deploy from a branch → `main` / `/docs`** を選択
+3. 数分後、`https://<ユーザー名>.github.io/<リポジトリ名>/` で公開
 
-スクレイパーが新しいデータをコミットすると、その push を検知して Streamlit Cloud が自動で再デプロイ＝アプリのデータが自動更新されます。
+スクレイパーが新しいデータをコミットすると、GitHub Pages が自動で再ビルドされ、サイトのデータが更新されます。
 
 ## データ構造
 
-`data/shops_data.json` は店舗オブジェクトの配列です。
+`docs/data/shops_data.json` は店舗オブジェクトの配列です。
 
 ```jsonc
 {
