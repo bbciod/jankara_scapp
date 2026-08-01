@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: "3.12"
           cache: "pip"
+          # requirements.txt を廃止したため、pipキャッシュのキーはスクレイパー依存を指す。
+          # 指定しないと既定で requirements.txt/pyproject.toml を探し、見つからず失敗する。
+          cache-dependency-path: requirements_scraper.txt
 
       - name: Install Python dependencies
         run: pip install -r requirements_scraper.txt
