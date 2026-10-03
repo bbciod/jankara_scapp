@@ -70,7 +70,7 @@ python scraper.py --dry-run
 
 [.github/workflows/scrape.yml](.github/workflows/scrape.yml) が以下を自動実行します。
 
-- **スケジュール**: 毎週月曜 AM2時 JST（cron `0 17 * * 0`）
+- **スケジュール**: 毎週月曜 AM2:37 JST（cron `37 17 * * 0`。毎時0分の混雑による起動遅延を避けるため分をずらしている）
 - **手動実行**: GitHub の Actions タブから起動可能（店舗ID指定可）
 - **処理**: 全店舗を取得 → `docs/data/shops_data.json` を更新 → 変更があれば自動コミット＆プッシュ
 

@@ -2,7 +2,8 @@ name: 週次 料金データ自動更新
 
 on:
   schedule:
-    - cron: "0 17 * * 0"   # 毎週月曜 AM2時 JST（= 日曜 17:00 UTC）
+    # 毎時0分は GitHub のスケジュール実行が混み起動が遅れやすいため、分をずらす
+    - cron: "37 17 * * 0"  # 毎週月曜 AM2:37 JST（= 日曜 17:37 UTC）
   workflow_dispatch:
     inputs:
       shop_ids:
