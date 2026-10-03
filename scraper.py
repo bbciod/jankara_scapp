@@ -275,6 +275,12 @@ def extract_price_table(soup: BeautifulSoup) -> list[dict]:
         else:
             tables.extend(sibling.find_all("table"))
 
+    # フォールバック: スーパージャンカラ系（105/106/251/253 等）は div#price 直下が
+    # 全体を包む div.container 1つで、起点の兄弟要素が存在せず表を1つも拾えない。
+    # 兄弟走査で0件のときだけ div#price 配下の表を全件対象にする（通常店の挙動は不変）。
+    if not tables and price_section:
+        tables = price_section.find_all("table")
+
     # ── 各テーブルを解析 ────────────────────────────────────
     for table in tables:
         rows = table.find_all("tr")
