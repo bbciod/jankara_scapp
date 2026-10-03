@@ -294,9 +294,13 @@ def extract_price_table(soup: BeautifulSoup) -> list[dict]:
 
         section_name = headers[0]
 
-        # 会員カラムのインデックス
+        # 会員カラムの位置を「右端からのオフセット」で持つ。
+        # 見出し行の先頭セルは colspan=2（プラン名＋曜日の上）、各プランの1行目は
+        # プラン名(rowspan)＋曜日＋料金の7セル、2行目以降は曜日＋料金の6セルになる。
+        # 見出しの位置（左から）で読むと1行目だけ1列ずれるため、料金は常に行末に
+        # 並ぶことを利用して右端基準で読む。
         col_idx: dict[str, int | None] = {
-            col: (headers.index(col) if col in headers else None)
+            col: (len(headers) - headers.index(col) if col in headers else None)
             for col in MEMBER_COLS
         }
         # 会員カラムが1列も見つからない → 料金外テーブルをスキップ
@@ -335,11 +339,11 @@ def extract_price_table(soup: BeautifulSoup) -> list[dict]:
 
             # ── 価格抽出 ─────────────────────────────────
             prices: dict[str, int | None] = {}
-            for col_name, idx in col_idx.items():
-                if idx is None or idx >= len(texts):
+            for col_name, offset in col_idx.items():
+                if offset is None or offset > len(texts):
                     prices[col_name] = None
                     continue
-                raw = re.sub(r"[¥￥,\s]", "", texts[idx])
+                raw = re.sub(r"[¥￥,\s]", "", texts[-offset])
                 m   = re.fullmatch(r"\d+", raw)
                 prices[col_name] = int(m.group()) if m else None
 
