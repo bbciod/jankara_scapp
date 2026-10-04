@@ -2,7 +2,7 @@
   {
     "shop_id": "004",
     "url": "https://jankara.ne.jp/shop/004/",
-    "scraped_at": "2026-10-03T10:19:27.407963+00:00",
+    "scraped_at": "2026-10-04T20:26:25.289452+00:00",
     "status": "OK",
     "name": "洛北店",
     "prefecture": "京都府",
@@ -154,7 +154,7 @@
   {
     "shop_id": "005",
     "url": "https://jankara.ne.jp/shop/005/",
-    "scraped_at": "2026-10-03T10:19:37.591241+00:00",
+    "scraped_at": "2026-10-04T20:26:33.981161+00:00",
     "status": "OK",
     "name": "住道駅前店",
     "prefecture": "大阪府",
@@ -326,7 +326,7 @@
   {
     "shop_id": "008",
     "url": "https://jankara.ne.jp/shop/008/",
-    "scraped_at": "2026-10-03T10:19:47.997569+00:00",
+    "scraped_at": "2026-10-04T20:26:42.319373+00:00",
     "status": "OK",
     "name": "阪急茨木店",
     "prefecture": "大阪府",
@@ -658,7 +658,7 @@
   {
     "shop_id": "010",
     "url": "https://jankara.ne.jp/shop/010/",
-    "scraped_at": "2026-10-03T10:19:57.135176+00:00",
+    "scraped_at": "2026-10-04T20:26:50.977072+00:00",
     "status": "OK",
     "name": "鶴橋駅前店",
     "prefecture": "大阪府",
@@ -990,7 +990,7 @@
   {
     "shop_id": "014",
     "url": "https://jankara.ne.jp/shop/014/",
-    "scraped_at": "2026-10-03T10:20:07.111728+00:00",
+    "scraped_at": "2026-10-04T20:26:59.324682+00:00",
     "status": "OK",
     "name": "豊中駅前店",
     "prefecture": "大阪府",
@@ -1242,7 +1242,7 @@
   {
     "shop_id": "018",
     "url": "https://jankara.ne.jp/shop/018/",
-    "scraped_at": "2026-10-03T10:20:15.971033+00:00",
+    "scraped_at": "2026-10-04T20:27:07.756994+00:00",
     "status": "OK",
     "name": "JR奈良店",
     "prefecture": "奈良県",
@@ -1454,7 +1454,7 @@
   {
     "shop_id": "020",
     "url": "https://jankara.ne.jp/shop/020/",
-    "scraped_at": "2026-10-03T10:20:29.950650+00:00",
+    "scraped_at": "2026-10-04T20:27:16.219415+00:00",
     "status": "OK",
     "name": "上新庄駅前店",
     "prefecture": "大阪府",
@@ -1666,7 +1666,7 @@
   {
     "shop_id": "021",
     "url": "https://jankara.ne.jp/shop/021/",
-    "scraped_at": "2026-10-03T10:20:45.599249+00:00",
+    "scraped_at": "2026-10-04T20:27:24.613585+00:00",
     "status": "OK",
     "name": "上本町駅前店",
     "prefecture": "大阪府",
@@ -1858,7 +1858,7 @@
   {
     "shop_id": "023",
     "url": "https://jankara.ne.jp/shop/023/",
-    "scraped_at": "2026-10-03T10:21:09.990536+00:00",
+    "scraped_at": "2026-10-04T20:27:32.942534+00:00",
     "status": "OK",
     "name": "心斎橋店",
     "prefecture": "大阪府",
@@ -2150,7 +2150,7 @@
   {
     "shop_id": "025",
     "url": "https://jankara.ne.jp/shop/025/",
-    "scraped_at": "2026-10-03T10:21:19.226539+00:00",
+    "scraped_at": "2026-10-04T20:27:41.359401+00:00",
     "status": "OK",
     "name": "江坂店",
     "prefecture": "大阪府",
@@ -2422,7 +2422,7 @@
   {
     "shop_id": "026",
     "url": "https://jankara.ne.jp/shop/026/",
-    "scraped_at": "2026-10-03T10:21:29.113947+00:00",
+    "scraped_at": "2026-10-04T20:27:49.754145+00:00",
     "status": "OK",
     "name": "近鉄奈良東向店",
     "prefecture": "奈良県",
@@ -2634,7 +2634,7 @@
   {
     "shop_id": "032",
     "url": "https://jankara.ne.jp/shop/032/",
-    "scraped_at": "2026-10-03T10:21:38.070104+00:00",
+    "scraped_at": "2026-10-04T20:27:58.593355+00:00",
     "status": "OK",
     "name": "京橋1号店",
     "prefecture": "大阪府",
@@ -2926,7 +2926,7 @@
   {
     "shop_id": "037",
     "url": "https://jankara.ne.jp/shop/037/",
-    "scraped_at": "2026-10-03T10:21:46.448285+00:00",
+    "scraped_at": "2026-10-04T20:28:07.273481+00:00",
     "status": "OK",
     "name": "京阪守口店",
     "prefecture": "大阪府",
@@ -3118,7 +3118,7 @@
   {
     "shop_id": "038",
     "url": "https://jankara.ne.jp/shop/038/",
-    "scraped_at": "2026-10-03T10:21:56.163272+00:00",
+    "scraped_at": "2026-10-04T20:28:15.617349+00:00",
     "status": "OK",
     "name": "京阪大和田店",
     "prefecture": "大阪府",
@@ -3370,7 +3370,7 @@
   {
     "shop_id": "042",
     "url": "https://jankara.ne.jp/shop/042/",
-    "scraped_at": "2026-10-03T10:22:06.687953+00:00",
+    "scraped_at": "2026-10-04T20:28:24.232228+00:00",
     "status": "OK",
     "name": "今津駅前店",
     "prefecture": "兵庫県",
@@ -3622,7 +3622,7 @@
   {
     "shop_id": "044",
     "url": "https://jankara.ne.jp/shop/044/",
-    "scraped_at": "2026-10-03T10:22:16.183335+00:00",
+    "scraped_at": "2026-10-04T20:28:32.829725+00:00",
     "status": "OK",
     "name": "阪急塚口店",
     "prefecture": "兵庫県",
@@ -3874,7 +3874,7 @@
   {
     "shop_id": "045",
     "url": "https://jankara.ne.jp/shop/045/",
-    "scraped_at": "2026-10-03T10:22:25.977965+00:00",
+    "scraped_at": "2026-10-04T20:28:41.548348+00:00",
     "status": "OK",
     "name": "アメリカ村店",
     "prefecture": "大阪府",
@@ -4166,7 +4166,7 @@
   {
     "shop_id": "048",
     "url": "https://jankara.ne.jp/shop/048/",
-    "scraped_at": "2026-10-03T10:22:38.187950+00:00",
+    "scraped_at": "2026-10-04T20:28:49.924153+00:00",
     "status": "OK",
     "name": "堺東店",
     "prefecture": "大阪府",
@@ -4358,7 +4358,7 @@
   {
     "shop_id": "051",
     "url": "https://jankara.ne.jp/shop/051/",
-    "scraped_at": "2026-10-03T10:22:50.934542+00:00",
+    "scraped_at": "2026-10-04T20:28:58.658234+00:00",
     "status": "OK",
     "name": "なんば店",
     "prefecture": "大阪府",
@@ -4550,7 +4550,7 @@
   {
     "shop_id": "053",
     "url": "https://jankara.ne.jp/shop/053/",
-    "scraped_at": "2026-10-03T10:23:13.591297+00:00",
+    "scraped_at": "2026-10-04T20:29:07.008579+00:00",
     "status": "OK",
     "name": "四条河原町店",
     "prefecture": "京都府",
@@ -4842,7 +4842,7 @@
   {
     "shop_id": "055",
     "url": "https://jankara.ne.jp/shop/055/",
-    "scraped_at": "2026-10-03T10:23:27.451897+00:00",
+    "scraped_at": "2026-10-04T20:29:15.892753+00:00",
     "status": "OK",
     "name": "三宮駅前店",
     "prefecture": "兵庫県",
@@ -5054,7 +5054,7 @@
   {
     "shop_id": "056",
     "url": "https://jankara.ne.jp/shop/056/",
-    "scraped_at": "2026-10-03T10:23:40.194871+00:00",
+    "scraped_at": "2026-10-04T20:29:24.264840+00:00",
     "status": "OK",
     "name": "姫路駅前町店",
     "prefecture": "兵庫県",
@@ -5286,7 +5286,7 @@
   {
     "shop_id": "058",
     "url": "https://jankara.ne.jp/shop/058/",
-    "scraped_at": "2026-10-03T10:23:51.425435+00:00",
+    "scraped_at": "2026-10-04T20:29:32.958808+00:00",
     "status": "OK",
     "name": "阪急園田店",
     "prefecture": "兵庫県",
@@ -5458,7 +5458,7 @@
   {
     "shop_id": "059",
     "url": "https://jankara.ne.jp/shop/059/",
-    "scraped_at": "2026-10-03T10:24:02.944276+00:00",
+    "scraped_at": "2026-10-04T20:29:41.322535+00:00",
     "status": "OK",
     "name": "元町駅前2号店",
     "prefecture": "兵庫県",
@@ -5650,7 +5650,7 @@
   {
     "shop_id": "060",
     "url": "https://jankara.ne.jp/shop/060/",
-    "scraped_at": "2026-10-03T10:24:15.253078+00:00",
+    "scraped_at": "2026-10-04T20:29:49.915219+00:00",
     "status": "OK",
     "name": "垂水駅前店",
     "prefecture": "兵庫県",
@@ -5902,7 +5902,7 @@
   {
     "shop_id": "062",
     "url": "https://jankara.ne.jp/shop/062/",
-    "scraped_at": "2026-10-03T10:24:27.554275+00:00",
+    "scraped_at": "2026-10-04T20:29:58.524654+00:00",
     "status": "OK",
     "name": "枚方駅前店",
     "prefecture": "大阪府",
@@ -6194,7 +6194,7 @@
   {
     "shop_id": "064",
     "url": "https://jankara.ne.jp/shop/064/",
-    "scraped_at": "2026-10-03T10:24:39.453404+00:00",
+    "scraped_at": "2026-10-04T20:30:07.296444+00:00",
     "status": "OK",
     "name": "明石駅前店",
     "prefecture": "兵庫県",
@@ -6446,7 +6446,7 @@
   {
     "shop_id": "065",
     "url": "https://jankara.ne.jp/shop/065/",
-    "scraped_at": "2026-10-03T10:24:53.101169+00:00",
+    "scraped_at": "2026-10-04T20:30:16.386737+00:00",
     "status": "OK",
     "name": "阪神尼崎店",
     "prefecture": "兵庫県",
@@ -6818,7 +6818,7 @@
   {
     "shop_id": "066",
     "url": "https://jankara.ne.jp/shop/066/",
-    "scraped_at": "2026-10-03T10:25:10.710058+00:00",
+    "scraped_at": "2026-10-04T20:30:24.785609+00:00",
     "status": "OK",
     "name": "北野坂店",
     "prefecture": "兵庫県",
@@ -7190,7 +7190,7 @@
   {
     "shop_id": "067",
     "url": "https://jankara.ne.jp/shop/067/",
-    "scraped_at": "2026-10-03T10:25:23.131139+00:00",
+    "scraped_at": "2026-10-04T20:30:33.175947+00:00",
     "status": "OK",
     "name": "十三本町店",
     "prefecture": "大阪府",
@@ -7382,7 +7382,7 @@
   {
     "shop_id": "068",
     "url": "https://jankara.ne.jp/shop/068/",
-    "scraped_at": "2026-10-03T10:25:34.797997+00:00",
+    "scraped_at": "2026-10-04T20:30:41.641813+00:00",
     "status": "OK",
     "name": "高槻2号店",
     "prefecture": "大阪府",
@@ -7674,7 +7674,7 @@
   {
     "shop_id": "070",
     "url": "https://jankara.ne.jp/shop/070/",
-    "scraped_at": "2026-10-03T10:25:47.165004+00:00",
+    "scraped_at": "2026-10-04T20:30:50.027843+00:00",
     "status": "OK",
     "name": "南海通なんば店",
     "prefecture": "大阪府",
@@ -7866,7 +7866,7 @@
   {
     "shop_id": "073",
     "url": "https://jankara.ne.jp/shop/073/",
-    "scraped_at": "2026-10-03T10:25:59.835299+00:00",
+    "scraped_at": "2026-10-04T20:30:58.474363+00:00",
     "status": "OK",
     "name": "三条河原町店",
     "prefecture": "京都府",
@@ -8238,7 +8238,7 @@
   {
     "shop_id": "075",
     "url": "https://jankara.ne.jp/shop/075/",
-    "scraped_at": "2026-10-03T10:26:11.616841+00:00",
+    "scraped_at": "2026-10-04T20:31:06.844164+00:00",
     "status": "OK",
     "name": "JR茨木店",
     "prefecture": "大阪府",
@@ -8490,7 +8490,7 @@
   {
     "shop_id": "076",
     "url": "https://jankara.ne.jp/shop/076/",
-    "scraped_at": "2026-10-03T10:26:22.791400+00:00",
+    "scraped_at": "2026-10-04T20:31:15.246369+00:00",
     "status": "OK",
     "name": "阪急東中通店",
     "prefecture": "大阪府",
@@ -8782,7 +8782,7 @@
   {
     "shop_id": "077",
     "url": "https://jankara.ne.jp/shop/077/",
-    "scraped_at": "2026-10-03T10:26:34.654366+00:00",
+    "scraped_at": "2026-10-04T20:31:23.634213+00:00",
     "status": "OK",
     "name": "JR吹田店",
     "prefecture": "大阪府",
@@ -8994,7 +8994,7 @@
   {
     "shop_id": "079",
     "url": "https://jankara.ne.jp/shop/079/",
-    "scraped_at": "2026-10-03T10:26:47.070534+00:00",
+    "scraped_at": "2026-10-04T20:31:31.985324+00:00",
     "status": "OK",
     "name": "池田駅前店",
     "prefecture": "大阪府",
@@ -9206,7 +9206,7 @@
   {
     "shop_id": "080",
     "url": "https://jankara.ne.jp/shop/080/",
-    "scraped_at": "2026-10-03T10:26:59.314208+00:00",
+    "scraped_at": "2026-10-04T20:31:40.650999+00:00",
     "status": "OK",
     "name": "阪急伊丹店",
     "prefecture": "兵庫県",
@@ -9458,7 +9458,7 @@
   {
     "shop_id": "081",
     "url": "https://jankara.ne.jp/shop/081/",
-    "scraped_at": "2026-10-03T10:27:10.549239+00:00",
+    "scraped_at": "2026-10-04T20:31:49.439758+00:00",
     "status": "OK",
     "name": "明石駅前2号店",
     "prefecture": "兵庫県",
@@ -9670,7 +9670,7 @@
   {
     "shop_id": "084",
     "url": "https://jankara.ne.jp/shop/084/",
-    "scraped_at": "2026-10-03T10:27:21.322715+00:00",
+    "scraped_at": "2026-10-04T20:31:57.799929+00:00",
     "status": "OK",
     "name": "西九条駅前店",
     "prefecture": "大阪府",
@@ -9862,7 +9862,7 @@
   {
     "shop_id": "086",
     "url": "https://jankara.ne.jp/shop/086/",
-    "scraped_at": "2026-10-03T10:27:35.189310+00:00",
+    "scraped_at": "2026-10-04T20:32:06.982818+00:00",
     "status": "OK",
     "name": "天王寺店",
     "prefecture": "大阪府",
@@ -10234,7 +10234,7 @@
   {
     "shop_id": "087",
     "url": "https://jankara.ne.jp/shop/087/",
-    "scraped_at": "2026-10-03T10:27:48.123780+00:00",
+    "scraped_at": "2026-10-04T20:32:15.340740+00:00",
     "status": "OK",
     "name": "あびこ店",
     "prefecture": "大阪府",
@@ -10426,7 +10426,7 @@
   {
     "shop_id": "088",
     "url": "https://jankara.ne.jp/shop/088/",
-    "scraped_at": "2026-10-03T10:28:02.380882+00:00",
+    "scraped_at": "2026-10-04T20:32:23.693447+00:00",
     "status": "OK",
     "name": "香里園駅前店",
     "prefecture": "大阪府",
@@ -10718,7 +10718,7 @@
   {
     "shop_id": "089",
     "url": "https://jankara.ne.jp/shop/089/",
-    "scraped_at": "2026-10-03T10:28:13.924278+00:00",
+    "scraped_at": "2026-10-04T20:32:32.044351+00:00",
     "status": "OK",
     "name": "阪急三国店",
     "prefecture": "大阪府",
@@ -10970,7 +10970,7 @@
   {
     "shop_id": "090",
     "url": "https://jankara.ne.jp/shop/090/",
-    "scraped_at": "2026-10-03T10:28:26.564978+00:00",
+    "scraped_at": "2026-10-04T20:32:40.400449+00:00",
     "status": "OK",
     "name": "生田新道店",
     "prefecture": "兵庫県",
@@ -11342,7 +11342,7 @@
   {
     "shop_id": "091",
     "url": "https://jankara.ne.jp/shop/091/",
-    "scraped_at": "2026-10-03T10:28:38.576694+00:00",
+    "scraped_at": "2026-10-04T20:32:48.803738+00:00",
     "status": "OK",
     "name": "千日前2号店",
     "prefecture": "大阪府",
@@ -11634,7 +11634,7 @@
   {
     "shop_id": "094",
     "url": "https://jankara.ne.jp/shop/094/",
-    "scraped_at": "2026-10-03T10:28:50.627967+00:00",
+    "scraped_at": "2026-10-04T20:32:57.170816+00:00",
     "status": "OK",
     "name": "お初天神店",
     "prefecture": "大阪府",
@@ -11966,7 +11966,7 @@
   {
     "shop_id": "096",
     "url": "https://jankara.ne.jp/shop/096/",
-    "scraped_at": "2026-10-03T10:29:02.734623+00:00",
+    "scraped_at": "2026-10-04T20:33:05.645437+00:00",
     "status": "OK",
     "name": "なんば本店",
     "prefecture": "大阪府",
@@ -12238,7 +12238,7 @@
   {
     "shop_id": "097",
     "url": "https://jankara.ne.jp/shop/097/",
-    "scraped_at": "2026-10-03T10:29:15.767859+00:00",
+    "scraped_at": "2026-10-04T20:33:14.027370+00:00",
     "status": "OK",
     "name": "JR立花店",
     "prefecture": "兵庫県",
@@ -12430,7 +12430,7 @@
   {
     "shop_id": "099",
     "url": "https://jankara.ne.jp/shop/099/",
-    "scraped_at": "2026-10-03T10:29:28.528577+00:00",
+    "scraped_at": "2026-10-04T20:33:22.369053+00:00",
     "status": "OK",
     "name": "藤井寺駅前店",
     "prefecture": "大阪府",
@@ -12602,7 +12602,7 @@
   {
     "shop_id": "100",
     "url": "https://jankara.ne.jp/shop/100/",
-    "scraped_at": "2026-10-03T10:29:39.610986+00:00",
+    "scraped_at": "2026-10-04T20:33:30.771711+00:00",
     "status": "OK",
     "name": "茶屋町店",
     "prefecture": "大阪府",
@@ -12974,7 +12974,7 @@
   {
     "shop_id": "101",
     "url": "https://jankara.ne.jp/shop/101/",
-    "scraped_at": "2026-10-03T10:29:55.576667+00:00",
+    "scraped_at": "2026-10-04T20:33:39.142743+00:00",
     "status": "OK",
     "name": "阪神西宮店",
     "prefecture": "兵庫県",
@@ -13306,7 +13306,7 @@
   {
     "shop_id": "103",
     "url": "https://jankara.ne.jp/shop/103/",
-    "scraped_at": "2026-10-03T10:30:11.648441+00:00",
+    "scraped_at": "2026-10-04T20:33:47.472035+00:00",
     "status": "OK",
     "name": "阪急東通3号店",
     "prefecture": "大阪府",
@@ -13598,7 +13598,7 @@
   {
     "shop_id": "104",
     "url": "https://jankara.ne.jp/shop/104/",
-    "scraped_at": "2026-10-03T10:30:23.443304+00:00",
+    "scraped_at": "2026-10-04T20:33:56.742146+00:00",
     "status": "OK",
     "name": "河原町本店",
     "prefecture": "京都府",
@@ -14010,7 +14010,7 @@
   {
     "shop_id": "105",
     "url": "https://jankara.ne.jp/shop/105/",
-    "scraped_at": "2026-10-03T10:30:39.646508+00:00",
+    "scraped_at": "2026-10-04T20:34:05.106359+00:00",
     "status": "OK",
     "name": "スーパージャンカラ河原町本店プレミアム",
     "prefecture": "京都府",
@@ -14142,7 +14142,7 @@
   {
     "shop_id": "106",
     "url": "https://jankara.ne.jp/shop/106/",
-    "scraped_at": "2026-10-03T10:30:52.843383+00:00",
+    "scraped_at": "2026-10-04T20:34:14.064582+00:00",
     "status": "OK",
     "name": "スーパージャンカラ茶屋町店",
     "prefecture": "大阪府",
@@ -14294,7 +14294,7 @@
   {
     "shop_id": "107",
     "url": "https://jankara.ne.jp/shop/107/",
-    "scraped_at": "2026-10-03T10:31:06.605694+00:00",
+    "scraped_at": "2026-10-04T20:34:22.938357+00:00",
     "status": "OK",
     "name": "あべの店",
     "prefecture": "大阪府",
@@ -14586,7 +14586,7 @@
   {
     "shop_id": "109",
     "url": "https://jankara.ne.jp/shop/109/",
-    "scraped_at": "2026-10-03T10:31:18.575580+00:00",
+    "scraped_at": "2026-10-04T20:34:31.303429+00:00",
     "status": "OK",
     "name": "道頓堀店",
     "prefecture": "大阪府",
@@ -14858,7 +14858,7 @@
   {
     "shop_id": "111",
     "url": "https://jankara.ne.jp/shop/111/",
-    "scraped_at": "2026-10-03T10:31:30.654208+00:00",
+    "scraped_at": "2026-10-04T20:34:39.944612+00:00",
     "status": "OK",
     "name": "くずは店",
     "prefecture": "大阪府",
@@ -15030,7 +15030,7 @@
   {
     "shop_id": "113",
     "url": "https://jankara.ne.jp/shop/113/",
-    "scraped_at": "2026-10-03T10:31:41.905512+00:00",
+    "scraped_at": "2026-10-04T20:34:48.664399+00:00",
     "status": "OK",
     "name": "山科駅前店",
     "prefecture": "京都府",
@@ -15282,7 +15282,7 @@
   {
     "shop_id": "115",
     "url": "https://jankara.ne.jp/shop/115/",
-    "scraped_at": "2026-10-03T10:31:53.669034+00:00",
+    "scraped_at": "2026-10-04T20:34:57.081549+00:00",
     "status": "OK",
     "name": "JR神戸店",
     "prefecture": "兵庫県",
@@ -15574,7 +15574,7 @@
   {
     "shop_id": "116",
     "url": "https://jankara.ne.jp/shop/116/",
-    "scraped_at": "2026-10-03T10:32:08.582246+00:00",
+    "scraped_at": "2026-10-04T20:35:05.474348+00:00",
     "status": "OK",
     "name": "阪急東通本店",
     "prefecture": "大阪府",
@@ -15906,7 +15906,7 @@
   {
     "shop_id": "118",
     "url": "https://jankara.ne.jp/shop/118/",
-    "scraped_at": "2026-10-03T10:32:21.146655+00:00",
+    "scraped_at": "2026-10-04T20:35:13.887217+00:00",
     "status": "OK",
     "name": "大正駅前店",
     "prefecture": "大阪府",
@@ -16278,7 +16278,7 @@
   {
     "shop_id": "119",
     "url": "https://jankara.ne.jp/shop/119/",
-    "scraped_at": "2026-10-03T10:32:33.482338+00:00",
+    "scraped_at": "2026-10-04T20:35:22.577042+00:00",
     "status": "OK",
     "name": "心斎橋3号店",
     "prefecture": "大阪府",
@@ -16570,7 +16570,7 @@
   {
     "shop_id": "120",
     "url": "https://jankara.ne.jp/shop/120/",
-    "scraped_at": "2026-10-03T10:32:44.458902+00:00",
+    "scraped_at": "2026-10-04T20:35:30.921008+00:00",
     "status": "OK",
     "name": "阪急かっぱ横丁店",
     "prefecture": "大阪府",
@@ -16822,7 +16822,7 @@
   {
     "shop_id": "121",
     "url": "https://jankara.ne.jp/shop/121/",
-    "scraped_at": "2026-10-03T10:32:56.967497+00:00",
+    "scraped_at": "2026-10-04T20:35:39.356374+00:00",
     "status": "OK",
     "name": "サンキタ通り店",
     "prefecture": "兵庫県",
@@ -17154,7 +17154,7 @@
   {
     "shop_id": "122",
     "url": "https://jankara.ne.jp/shop/122/",
-    "scraped_at": "2026-10-03T10:33:09.274339+00:00",
+    "scraped_at": "2026-10-04T20:35:47.708098+00:00",
     "status": "OK",
     "name": "JR兵庫店",
     "prefecture": "兵庫県",
@@ -17326,7 +17326,7 @@
   {
     "shop_id": "123",
     "url": "https://jankara.ne.jp/shop/123/",
-    "scraped_at": "2026-10-03T10:33:21.163270+00:00",
+    "scraped_at": "2026-10-04T20:35:56.406533+00:00",
     "status": "OK",
     "name": "大和八木駅前店",
     "prefecture": "奈良県",
@@ -17518,7 +17518,7 @@
   {
     "shop_id": "124",
     "url": "https://jankara.ne.jp/shop/124/",
-    "scraped_at": "2026-10-03T10:33:32.456776+00:00",
+    "scraped_at": "2026-10-04T20:36:04.837496+00:00",
     "status": "OK",
     "name": "布施駅前2号店",
     "prefecture": "大阪府",
@@ -17790,7 +17790,7 @@
   {
     "shop_id": "125",
     "url": "https://jankara.ne.jp/shop/125/",
-    "scraped_at": "2026-10-03T10:33:44.963660+00:00",
+    "scraped_at": "2026-10-04T20:36:13.369955+00:00",
     "status": "OK",
     "name": "JR福島店",
     "prefecture": "大阪府",
@@ -18042,7 +18042,7 @@
   {
     "shop_id": "126",
     "url": "https://jankara.ne.jp/shop/126/",
-    "scraped_at": "2026-10-03T10:33:55.784681+00:00",
+    "scraped_at": "2026-10-04T20:36:21.749763+00:00",
     "status": "OK",
     "name": "新大宮駅前店",
     "prefecture": "奈良県",
@@ -18294,7 +18294,7 @@
   {
     "shop_id": "127",
     "url": "https://jankara.ne.jp/shop/127/",
-    "scraped_at": "2026-10-03T10:34:07.858362+00:00",
+    "scraped_at": "2026-10-04T20:36:30.125670+00:00",
     "status": "OK",
     "name": "JR和歌山店",
     "prefecture": "和歌山県",
@@ -18486,7 +18486,7 @@
   {
     "shop_id": "128",
     "url": "https://jankara.ne.jp/shop/128/",
-    "scraped_at": "2026-10-03T10:34:19.440370+00:00",
+    "scraped_at": "2026-10-04T20:36:38.469402+00:00",
     "status": "OK",
     "name": "錦店",
     "prefecture": "愛知県",
@@ -18818,7 +18818,7 @@
   {
     "shop_id": "131",
     "url": "https://jankara.ne.jp/shop/131/",
-    "scraped_at": "2026-10-03T10:34:31.356951+00:00",
+    "scraped_at": "2026-10-04T20:36:48.208312+00:00",
     "status": "OK",
     "name": "岡山駅前店",
     "prefecture": "岡山県",
@@ -19190,7 +19190,7 @@
   {
     "shop_id": "132",
     "url": "https://jankara.ne.jp/shop/132/",
-    "scraped_at": "2026-10-03T10:34:47.839324+00:00",
+    "scraped_at": "2026-10-04T20:36:56.579523+00:00",
     "status": "OK",
     "name": "西院駅前店",
     "prefecture": "京都府",
@@ -19602,7 +19602,7 @@
   {
     "shop_id": "133",
     "url": "https://jankara.ne.jp/shop/133/",
-    "scraped_at": "2026-10-03T10:35:00.779180+00:00",
+    "scraped_at": "2026-10-04T20:37:05.337159+00:00",
     "status": "OK",
     "name": "阪神御影店",
     "prefecture": "兵庫県",
@@ -19794,7 +19794,7 @@
   {
     "shop_id": "134",
     "url": "https://jankara.ne.jp/shop/134/",
-    "scraped_at": "2026-10-03T10:35:12.519112+00:00",
+    "scraped_at": "2026-10-04T20:37:13.708570+00:00",
     "status": "OK",
     "name": "北巽駅前店",
     "prefecture": "大阪府",
@@ -20046,7 +20046,7 @@
   {
     "shop_id": "135",
     "url": "https://jankara.ne.jp/shop/135/",
-    "scraped_at": "2026-10-03T10:35:24.376868+00:00",
+    "scraped_at": "2026-10-04T20:37:22.115698+00:00",
     "status": "OK",
     "name": "岐阜駅前店",
     "prefecture": "岐阜県",
@@ -20238,7 +20238,7 @@
   {
     "shop_id": "136",
     "url": "https://jankara.ne.jp/shop/136/",
-    "scraped_at": "2026-10-03T10:35:39.299533+00:00",
+    "scraped_at": "2026-10-04T20:37:30.443254+00:00",
     "status": "OK",
     "name": "藤が丘駅前店",
     "prefecture": "愛知県",
@@ -20530,7 +20530,7 @@
   {
     "shop_id": "138",
     "url": "https://jankara.ne.jp/shop/138/",
-    "scraped_at": "2026-10-03T10:35:49.445800+00:00",
+    "scraped_at": "2026-10-04T20:37:39.243231+00:00",
     "status": "OK",
     "name": "長居駅前店",
     "prefecture": "大阪府",
@@ -20782,7 +20782,7 @@
   {
     "shop_id": "139",
     "url": "https://jankara.ne.jp/shop/139/",
-    "scraped_at": "2026-10-03T10:35:58.884482+00:00",
+    "scraped_at": "2026-10-04T20:37:47.659770+00:00",
     "status": "OK",
     "name": "新瑞橋駅前店",
     "prefecture": "愛知県",
@@ -21014,7 +21014,7 @@
   {
     "shop_id": "140",
     "url": "https://jankara.ne.jp/shop/140/",
-    "scraped_at": "2026-10-03T10:36:07.872454+00:00",
+    "scraped_at": "2026-10-04T20:37:56.128849+00:00",
     "status": "OK",
     "name": "本山駅前店",
     "prefecture": "愛知県",
@@ -21266,7 +21266,7 @@
   {
     "shop_id": "143",
     "url": "https://jankara.ne.jp/shop/143/",
-    "scraped_at": "2026-10-03T10:36:17.186553+00:00",
+    "scraped_at": "2026-10-04T20:38:04.473990+00:00",
     "status": "OK",
     "name": "倉敷駅前店",
     "prefecture": "岡山県",
@@ -21558,7 +21558,7 @@
   {
     "shop_id": "144",
     "url": "https://jankara.ne.jp/shop/144/",
-    "scraped_at": "2026-10-03T10:36:26.536602+00:00",
+    "scraped_at": "2026-10-04T20:38:12.925573+00:00",
     "status": "OK",
     "name": "北新地店",
     "prefecture": "大阪府",
@@ -21770,7 +21770,7 @@
   {
     "shop_id": "145",
     "url": "https://jankara.ne.jp/shop/145/",
-    "scraped_at": "2026-10-03T10:36:35.497238+00:00",
+    "scraped_at": "2026-10-04T20:38:21.391334+00:00",
     "status": "OK",
     "name": "本通店",
     "prefecture": "広島県",
@@ -22002,7 +22002,7 @@
   {
     "shop_id": "146",
     "url": "https://jankara.ne.jp/shop/146/",
-    "scraped_at": "2026-10-03T10:36:44.666432+00:00",
+    "scraped_at": "2026-10-04T20:38:29.782630+00:00",
     "status": "OK",
     "name": "京都駅前店",
     "prefecture": "京都府",
@@ -22334,7 +22334,7 @@
   {
     "shop_id": "147",
     "url": "https://jankara.ne.jp/shop/147/",
-    "scraped_at": "2026-10-03T10:36:53.393644+00:00",
+    "scraped_at": "2026-10-04T20:38:38.145775+00:00",
     "status": "OK",
     "name": "JR六甲道2号店",
     "prefecture": "兵庫県",
@@ -22526,7 +22526,7 @@
   {
     "shop_id": "148",
     "url": "https://jankara.ne.jp/shop/148/",
-    "scraped_at": "2026-10-03T10:37:02.645305+00:00",
+    "scraped_at": "2026-10-04T20:38:46.612049+00:00",
     "status": "OK",
     "name": "同志社前店",
     "prefecture": "京都府",
@@ -22698,7 +22698,7 @@
   {
     "shop_id": "149",
     "url": "https://jankara.ne.jp/shop/149/",
-    "scraped_at": "2026-10-03T10:37:11.497717+00:00",
+    "scraped_at": "2026-10-04T20:38:54.972067+00:00",
     "status": "OK",
     "name": "中洲川端駅前店",
     "prefecture": "福岡県",
@@ -22990,7 +22990,7 @@
   {
     "shop_id": "150",
     "url": "https://jankara.ne.jp/shop/150/",
-    "scraped_at": "2026-10-03T10:37:25.478017+00:00",
+    "scraped_at": "2026-10-04T20:39:03.667481+00:00",
     "status": "OK",
     "name": "下通店",
     "prefecture": "熊本県",
@@ -23402,7 +23402,7 @@
   {
     "shop_id": "151",
     "url": "https://jankara.ne.jp/shop/151/",
-    "scraped_at": "2026-10-03T10:37:34.771193+00:00",
+    "scraped_at": "2026-10-04T20:39:12.125566+00:00",
     "status": "OK",
     "name": "名駅西口店",
     "prefecture": "愛知県",
@@ -23654,7 +23654,7 @@
   {
     "shop_id": "152",
     "url": "https://jankara.ne.jp/shop/152/",
-    "scraped_at": "2026-10-03T10:37:43.249354+00:00",
+    "scraped_at": "2026-10-04T20:39:20.500274+00:00",
     "status": "OK",
     "name": "下通2号店",
     "prefecture": "熊本県",
@@ -24066,7 +24066,7 @@
   {
     "shop_id": "153",
     "url": "https://jankara.ne.jp/shop/153/",
-    "scraped_at": "2026-10-03T10:37:52.203715+00:00",
+    "scraped_at": "2026-10-04T20:39:36.125684+00:00",
     "status": "OK",
     "name": "錦本店",
     "prefecture": "愛知県",
@@ -24398,7 +24398,7 @@
   {
     "shop_id": "154",
     "url": "https://jankara.ne.jp/shop/154/",
-    "scraped_at": "2026-10-03T10:38:03.246661+00:00",
+    "scraped_at": "2026-10-04T20:39:44.525287+00:00",
     "status": "OK",
     "name": "近鉄四日市店",
     "prefecture": "三重県",
@@ -24750,7 +24750,7 @@
   {
     "shop_id": "155",
     "url": "https://jankara.ne.jp/shop/155/",
-    "scraped_at": "2026-10-03T10:38:13.170798+00:00",
+    "scraped_at": "2026-10-04T20:39:52.977335+00:00",
     "status": "OK",
     "name": "阪急東通店",
     "prefecture": "大阪府",
@@ -25082,7 +25082,7 @@
   {
     "shop_id": "156",
     "url": "https://jankara.ne.jp/shop/156/",
-    "scraped_at": "2026-10-03T10:38:23.213353+00:00",
+    "scraped_at": "2026-10-04T20:40:01.835042+00:00",
     "status": "OK",
     "name": "新金岡駅前店",
     "prefecture": "大阪府",
@@ -25294,7 +25294,7 @@
   {
     "shop_id": "157",
     "url": "https://jankara.ne.jp/shop/157/",
-    "scraped_at": "2026-10-03T10:38:33.041850+00:00",
+    "scraped_at": "2026-10-04T20:40:10.532618+00:00",
     "status": "OK",
     "name": "姫路みゆき通店",
     "prefecture": "兵庫県",
@@ -25626,7 +25626,7 @@
   {
     "shop_id": "158",
     "url": "https://jankara.ne.jp/shop/158/",
-    "scraped_at": "2026-10-03T10:38:43.489482+00:00",
+    "scraped_at": "2026-10-04T20:40:18.933343+00:00",
     "status": "OK",
     "name": "名駅西口2号店",
     "prefecture": "愛知県",
@@ -25818,7 +25818,7 @@
   {
     "shop_id": "159",
     "url": "https://jankara.ne.jp/shop/159/",
-    "scraped_at": "2026-10-03T10:38:53.747966+00:00",
+    "scraped_at": "2026-10-04T20:40:27.402293+00:00",
     "status": "OK",
     "name": "中央通り店",
     "prefecture": "広島県",
@@ -26150,7 +26150,7 @@
   {
     "shop_id": "160",
     "url": "https://jankara.ne.jp/shop/160/",
-    "scraped_at": "2026-10-03T10:39:03.358758+00:00",
+    "scraped_at": "2026-10-04T20:40:36.075890+00:00",
     "status": "OK",
     "name": "岡山駅前2号店",
     "prefecture": "岡山県",
@@ -26442,7 +26442,7 @@
   {
     "shop_id": "161",
     "url": "https://jankara.ne.jp/shop/161/",
-    "scraped_at": "2026-10-03T10:39:13.339310+00:00",
+    "scraped_at": "2026-10-04T20:40:45.555902+00:00",
     "status": "OK",
     "name": "大曽根駅前店",
     "prefecture": "愛知県",
@@ -26774,7 +26774,7 @@
   {
     "shop_id": "162",
     "url": "https://jankara.ne.jp/shop/162/",
-    "scraped_at": "2026-10-03T10:39:23.343140+00:00",
+    "scraped_at": "2026-10-04T20:40:53.949400+00:00",
     "status": "OK",
     "name": "江坂2号店",
     "prefecture": "大阪府",
@@ -26986,7 +26986,7 @@
   {
     "shop_id": "163",
     "url": "https://jankara.ne.jp/shop/163/",
-    "scraped_at": "2026-10-03T10:39:32.824163+00:00",
+    "scraped_at": "2026-10-04T20:41:02.371415+00:00",
     "status": "OK",
     "name": "六地蔵店",
     "prefecture": "京都府",
@@ -27218,7 +27218,7 @@
   {
     "shop_id": "164",
     "url": "https://jankara.ne.jp/shop/164/",
-    "scraped_at": "2026-10-03T10:39:47.563712+00:00",
+    "scraped_at": "2026-10-04T20:41:10.742350+00:00",
     "status": "OK",
     "name": "天神店",
     "prefecture": "福岡県",
@@ -27590,7 +27590,7 @@
   {
     "shop_id": "165",
     "url": "https://jankara.ne.jp/shop/165/",
-    "scraped_at": "2026-10-03T10:39:57.404865+00:00",
+    "scraped_at": "2026-10-04T20:41:19.356460+00:00",
     "status": "OK",
     "name": "すすきの店",
     "prefecture": "北海道",
@@ -27782,7 +27782,7 @@
   {
     "shop_id": "166",
     "url": "https://jankara.ne.jp/shop/166/",
-    "scraped_at": "2026-10-03T10:40:08.057996+00:00",
+    "scraped_at": "2026-10-04T20:41:27.739309+00:00",
     "status": "OK",
     "name": "博多駅筑紫口店",
     "prefecture": "福岡県",
@@ -28074,7 +28074,7 @@
   {
     "shop_id": "167",
     "url": "https://jankara.ne.jp/shop/167/",
-    "scraped_at": "2026-10-03T10:40:19.988662+00:00",
+    "scraped_at": "2026-10-04T20:41:36.091502+00:00",
     "status": "OK",
     "name": "石橋駅前店",
     "prefecture": "大阪府",
@@ -28286,7 +28286,7 @@
   {
     "shop_id": "168",
     "url": "https://jankara.ne.jp/shop/168/",
-    "scraped_at": "2026-10-03T10:40:31.420762+00:00",
+    "scraped_at": "2026-10-04T20:41:44.906363+00:00",
     "status": "OK",
     "name": "琴似店",
     "prefecture": "北海道",
@@ -28538,7 +28538,7 @@
   {
     "shop_id": "169",
     "url": "https://jankara.ne.jp/shop/169/",
-    "scraped_at": "2026-10-03T10:40:42.843470+00:00",
+    "scraped_at": "2026-10-04T20:41:53.287808+00:00",
     "status": "OK",
     "name": "有楽街店",
     "prefecture": "静岡県",
@@ -28910,7 +28910,7 @@
   {
     "shop_id": "170",
     "url": "https://jankara.ne.jp/shop/170/",
-    "scraped_at": "2026-10-03T10:40:54.245534+00:00",
+    "scraped_at": "2026-10-04T20:42:01.977074+00:00",
     "status": "OK",
     "name": "札幌駅前店",
     "prefecture": "北海道",
@@ -29162,7 +29162,7 @@
   {
     "shop_id": "171",
     "url": "https://jankara.ne.jp/shop/171/",
-    "scraped_at": "2026-10-03T12:07:44.684608+00:00",
+    "scraped_at": "2026-10-04T20:42:10.393195+00:00",
     "status": "OK",
     "name": "草津駅東口店",
     "prefecture": "滋賀県",
@@ -29494,7 +29494,7 @@
   {
     "shop_id": "172",
     "url": "https://jankara.ne.jp/shop/172/",
-    "scraped_at": "2026-10-03T12:07:59.481574+00:00",
+    "scraped_at": "2026-10-04T20:42:19.036026+00:00",
     "status": "OK",
     "name": "なんさん通り店",
     "prefecture": "大阪府",
@@ -29666,7 +29666,7 @@
   {
     "shop_id": "173",
     "url": "https://jankara.ne.jp/shop/173/",
-    "scraped_at": "2026-10-03T12:08:09.899957+00:00",
+    "scraped_at": "2026-10-04T20:42:27.402451+00:00",
     "status": "OK",
     "name": "すすきの2号店",
     "prefecture": "北海道",
@@ -29958,7 +29958,7 @@
   {
     "shop_id": "174",
     "url": "https://jankara.ne.jp/shop/174/",
-    "scraped_at": "2026-10-03T12:08:19.947518+00:00",
+    "scraped_at": "2026-10-04T20:42:35.800003+00:00",
     "status": "OK",
     "name": "京橋本店",
     "prefecture": "大阪府",
@@ -30330,7 +30330,7 @@
   {
     "shop_id": "175",
     "url": "https://jankara.ne.jp/shop/175/",
-    "scraped_at": "2026-10-03T12:08:30.596923+00:00",
+    "scraped_at": "2026-10-04T20:42:44.433244+00:00",
     "status": "OK",
     "name": "小倉店",
     "prefecture": "福岡県",
@@ -30602,7 +30602,7 @@
   {
     "shop_id": "176",
     "url": "https://jankara.ne.jp/shop/176/",
-    "scraped_at": "2026-10-03T12:08:42.194628+00:00",
+    "scraped_at": "2026-10-04T20:42:52.918930+00:00",
     "status": "OK",
     "name": "住之江公園駅前店",
     "prefecture": "大阪府",
@@ -30874,7 +30874,7 @@
   {
     "shop_id": "177",
     "url": "https://jankara.ne.jp/shop/177/",
-    "scraped_at": "2026-10-03T12:08:53.911381+00:00",
+    "scraped_at": "2026-10-04T20:43:01.328038+00:00",
     "status": "OK",
     "name": "金山駅北口店",
     "prefecture": "愛知県",
@@ -31246,7 +31246,7 @@
   {
     "shop_id": "180",
     "url": "https://jankara.ne.jp/shop/180/",
-    "scraped_at": "2026-10-03T12:09:04.994275+00:00",
+    "scraped_at": "2026-10-04T20:43:09.700746+00:00",
     "status": "OK",
     "name": "紺屋町店",
     "prefecture": "静岡県",
@@ -31538,7 +31538,7 @@
   {
     "shop_id": "181",
     "url": "https://jankara.ne.jp/shop/181/",
-    "scraped_at": "2026-10-03T12:09:15.924526+00:00",
+    "scraped_at": "2026-10-04T20:43:18.286218+00:00",
     "status": "OK",
     "name": "香椎駅前店",
     "prefecture": "福岡県",
@@ -31830,7 +31830,7 @@
   {
     "shop_id": "182",
     "url": "https://jankara.ne.jp/shop/182/",
-    "scraped_at": "2026-10-03T12:09:25.898323+00:00",
+    "scraped_at": "2026-10-04T20:43:26.651784+00:00",
     "status": "OK",
     "name": "板宿駅前店",
     "prefecture": "兵庫県",
@@ -32082,7 +32082,7 @@
   {
     "shop_id": "183",
     "url": "https://jankara.ne.jp/shop/183/",
-    "scraped_at": "2026-10-03T12:09:36.570889+00:00",
+    "scraped_at": "2026-10-04T20:43:35.078382+00:00",
     "status": "OK",
     "name": "西新店",
     "prefecture": "福岡県",
@@ -32354,7 +32354,7 @@
   {
     "shop_id": "184",
     "url": "https://jankara.ne.jp/shop/184/",
-    "scraped_at": "2026-10-03T12:09:46.004720+00:00",
+    "scraped_at": "2026-10-04T20:43:43.567634+00:00",
     "status": "OK",
     "name": "福山駅前店",
     "prefecture": "広島県",
@@ -32586,7 +32586,7 @@
   {
     "shop_id": "185",
     "url": "https://jankara.ne.jp/shop/185/",
-    "scraped_at": "2026-10-03T12:09:56.341705+00:00",
+    "scraped_at": "2026-10-04T20:43:51.923586+00:00",
     "status": "OK",
     "name": "大分駅前店",
     "prefecture": "大分県",
@@ -32958,7 +32958,7 @@
   {
     "shop_id": "187",
     "url": "https://jankara.ne.jp/shop/187/",
-    "scraped_at": "2026-10-03T12:10:06.797320+00:00",
+    "scraped_at": "2026-10-04T20:44:00.283840+00:00",
     "status": "OK",
     "name": "四条大宮駅前店",
     "prefecture": "京都府",
@@ -33370,7 +33370,7 @@
   {
     "shop_id": "188",
     "url": "https://jankara.ne.jp/shop/188/",
-    "scraped_at": "2026-10-03T12:10:16.527926+00:00",
+    "scraped_at": "2026-10-04T20:44:08.710905+00:00",
     "status": "OK",
     "name": "名駅東口店",
     "prefecture": "愛知県",
@@ -33742,7 +33742,7 @@
   {
     "shop_id": "189",
     "url": "https://jankara.ne.jp/shop/189/",
-    "scraped_at": "2026-10-03T12:10:25.815406+00:00",
+    "scraped_at": "2026-10-04T20:44:17.267460+00:00",
     "status": "OK",
     "name": "十三駅東口店",
     "prefecture": "大阪府",
@@ -33934,7 +33934,7 @@
   {
     "shop_id": "190",
     "url": "https://jankara.ne.jp/shop/190/",
-    "scraped_at": "2026-10-03T12:10:48.190771+00:00",
+    "scraped_at": "2026-10-04T20:44:25.939812+00:00",
     "status": "OK",
     "name": "JR鳳駅前店",
     "prefecture": "大阪府",
@@ -34126,7 +34126,7 @@
   {
     "shop_id": "191",
     "url": "https://jankara.ne.jp/shop/191/",
-    "scraped_at": "2026-10-03T12:10:57.533101+00:00",
+    "scraped_at": "2026-10-04T20:44:34.291970+00:00",
     "status": "OK",
     "name": "金沢駅東口店",
     "prefecture": "石川県",
@@ -34498,7 +34498,7 @@
   {
     "shop_id": "192",
     "url": "https://jankara.ne.jp/shop/192/",
-    "scraped_at": "2026-10-03T12:11:13.938418+00:00",
+    "scraped_at": "2026-10-04T20:44:42.661410+00:00",
     "status": "OK",
     "name": "西鉄久留米駅前店",
     "prefecture": "福岡県",
@@ -34870,7 +34870,7 @@
   {
     "shop_id": "193",
     "url": "https://jankara.ne.jp/shop/193/",
-    "scraped_at": "2026-10-03T12:11:29.506556+00:00",
+    "scraped_at": "2026-10-04T20:44:51.084382+00:00",
     "status": "OK",
     "name": "天文館店",
     "prefecture": "鹿児島県",
@@ -35122,7 +35122,7 @@
   {
     "shop_id": "194",
     "url": "https://jankara.ne.jp/shop/194/",
-    "scraped_at": "2026-10-03T12:11:47.759409+00:00",
+    "scraped_at": "2026-10-04T20:44:59.484561+00:00",
     "status": "OK",
     "name": "玉造駅前店",
     "prefecture": "大阪府",
@@ -35314,7 +35314,7 @@
   {
     "shop_id": "195",
     "url": "https://jankara.ne.jp/shop/195/",
-    "scraped_at": "2026-10-03T12:11:59.884777+00:00",
+    "scraped_at": "2026-10-04T20:45:08.172513+00:00",
     "status": "OK",
     "name": "高松店",
     "prefecture": "香川県",
@@ -35506,7 +35506,7 @@
   {
     "shop_id": "196",
     "url": "https://jankara.ne.jp/shop/196/",
-    "scraped_at": "2026-10-03T12:12:10.022563+00:00",
+    "scraped_at": "2026-10-04T20:45:16.542731+00:00",
     "status": "OK",
     "name": "高槻3号店",
     "prefecture": "大阪府",
@@ -35678,7 +35678,7 @@
   {
     "shop_id": "197",
     "url": "https://jankara.ne.jp/shop/197/",
-    "scraped_at": "2026-10-03T12:12:21.929784+00:00",
+    "scraped_at": "2026-10-04T20:45:25.343857+00:00",
     "status": "OK",
     "name": "八事駅前店",
     "prefecture": "愛知県",
@@ -35910,7 +35910,7 @@
   {
     "shop_id": "198",
     "url": "https://jankara.ne.jp/shop/198/",
-    "scraped_at": "2026-10-03T12:12:32.652815+00:00",
+    "scraped_at": "2026-10-04T20:45:33.737933+00:00",
     "status": "OK",
     "name": "博多駅筑紫口2号店",
     "prefecture": "福岡県",
@@ -36142,7 +36142,7 @@
   {
     "shop_id": "199",
     "url": "https://jankara.ne.jp/shop/199/",
-    "scraped_at": "2026-10-03T12:12:43.489032+00:00",
+    "scraped_at": "2026-10-04T20:45:42.581002+00:00",
     "status": "OK",
     "name": "梅田芝田町店",
     "prefecture": "大阪府",
@@ -36434,7 +36434,7 @@
   {
     "shop_id": "200",
     "url": "https://jankara.ne.jp/shop/200/",
-    "scraped_at": "2026-10-03T12:12:55.381217+00:00",
+    "scraped_at": "2026-10-04T20:45:50.992266+00:00",
     "status": "OK",
     "name": "枚方駅前2号店",
     "prefecture": "大阪府",
@@ -36646,7 +36646,7 @@
   {
     "shop_id": "201",
     "url": "https://jankara.ne.jp/shop/201/",
-    "scraped_at": "2026-10-03T12:13:06.473552+00:00",
+    "scraped_at": "2026-10-04T20:45:59.446803+00:00",
     "status": "OK",
     "name": "佐世保京町店",
     "prefecture": "長崎県",
@@ -36898,7 +36898,7 @@
   {
     "shop_id": "202",
     "url": "https://jankara.ne.jp/shop/202/",
-    "scraped_at": "2026-10-03T12:13:16.231770+00:00",
+    "scraped_at": "2026-10-04T20:46:07.836013+00:00",
     "status": "OK",
     "name": "阪急西宮北口店",
     "prefecture": "兵庫県",
@@ -37190,7 +37190,7 @@
   {
     "shop_id": "203",
     "url": "https://jankara.ne.jp/shop/203/",
-    "scraped_at": "2026-10-03T12:13:26.000097+00:00",
+    "scraped_at": "2026-10-04T20:46:16.225143+00:00",
     "status": "OK",
     "name": "千日前3号店",
     "prefecture": "大阪府",
@@ -37382,7 +37382,7 @@
   {
     "shop_id": "204",
     "url": "https://jankara.ne.jp/shop/204/",
-    "scraped_at": "2026-10-03T12:13:36.053093+00:00",
+    "scraped_at": "2026-10-04T20:46:24.711433+00:00",
     "status": "OK",
     "name": "薬院駅前店",
     "prefecture": "福岡県",
@@ -37634,7 +37634,7 @@
   {
     "shop_id": "205",
     "url": "https://jankara.ne.jp/shop/205/",
-    "scraped_at": "2026-10-03T12:13:45.397327+00:00",
+    "scraped_at": "2026-10-04T20:46:33.441798+00:00",
     "status": "OK",
     "name": "桃山御陵前店",
     "prefecture": "京都府",
@@ -37886,7 +37886,7 @@
   {
     "shop_id": "206",
     "url": "https://jankara.ne.jp/shop/206/",
-    "scraped_at": "2026-10-03T12:13:56.463960+00:00",
+    "scraped_at": "2026-10-04T20:46:42.045817+00:00",
     "status": "OK",
     "name": "阪急西宮北口2号店",
     "prefecture": "兵庫県",
@@ -38078,7 +38078,7 @@
   {
     "shop_id": "207",
     "url": "https://jankara.ne.jp/shop/207/",
-    "scraped_at": "2026-10-03T12:14:06.546649+00:00",
+    "scraped_at": "2026-10-04T20:46:50.465037+00:00",
     "status": "OK",
     "name": "八戸ノ里駅前店",
     "prefecture": "大阪府",
@@ -38290,7 +38290,7 @@
   {
     "shop_id": "208",
     "url": "https://jankara.ne.jp/shop/208/",
-    "scraped_at": "2026-10-03T12:14:15.868701+00:00",
+    "scraped_at": "2026-10-04T20:46:58.817206+00:00",
     "status": "OK",
     "name": "深井駅前店",
     "prefecture": "大阪府",
@@ -38522,7 +38522,7 @@
   {
     "shop_id": "209",
     "url": "https://jankara.ne.jp/shop/209/",
-    "scraped_at": "2026-10-03T12:14:25.923344+00:00",
+    "scraped_at": "2026-10-04T20:47:07.182796+00:00",
     "status": "OK",
     "name": "西中島店",
     "prefecture": "大阪府",
@@ -38774,7 +38774,7 @@
   {
     "shop_id": "210",
     "url": "https://jankara.ne.jp/shop/210/",
-    "scraped_at": "2026-10-03T12:14:35.025497+00:00",
+    "scraped_at": "2026-10-04T20:47:15.567802+00:00",
     "status": "OK",
     "name": "堺東2号店",
     "prefecture": "大阪府",
@@ -38966,7 +38966,7 @@
   {
     "shop_id": "211",
     "url": "https://jankara.ne.jp/shop/211/",
-    "scraped_at": "2026-10-03T12:14:44.088398+00:00",
+    "scraped_at": "2026-10-04T20:47:27.070813+00:00",
     "status": "OK",
     "name": "大街道店",
     "prefecture": "愛媛県",
@@ -39338,7 +39338,7 @@
   {
     "shop_id": "213",
     "url": "https://jankara.ne.jp/shop/213/",
-    "scraped_at": "2026-10-03T12:14:53.581625+00:00",
+    "scraped_at": "2026-10-04T20:47:35.442374+00:00",
     "status": "OK",
     "name": "今池駅前店",
     "prefecture": "愛知県",
@@ -39630,7 +39630,7 @@
   {
     "shop_id": "214",
     "url": "https://jankara.ne.jp/shop/214/",
-    "scraped_at": "2026-10-03T12:15:03.277925+00:00",
+    "scraped_at": "2026-10-04T20:47:44.180271+00:00",
     "status": "OK",
     "name": "橘通店",
     "prefecture": "宮崎県",
@@ -40002,7 +40002,7 @@
   {
     "shop_id": "215",
     "url": "https://jankara.ne.jp/shop/215/",
-    "scraped_at": "2026-10-03T12:15:16.654284+00:00",
+    "scraped_at": "2026-10-04T20:47:52.575227+00:00",
     "status": "OK",
     "name": "本通2号店",
     "prefecture": "広島県",
@@ -40154,7 +40154,7 @@
   {
     "shop_id": "216",
     "url": "https://jankara.ne.jp/shop/216/",
-    "scraped_at": "2026-10-03T12:15:26.511557+00:00",
+    "scraped_at": "2026-10-04T20:48:00.947676+00:00",
     "status": "OK",
     "name": "静岡本店",
     "prefecture": "静岡県",
@@ -40446,7 +40446,7 @@
   {
     "shop_id": "217",
     "url": "https://jankara.ne.jp/shop/217/",
-    "scraped_at": "2026-10-03T12:15:35.941992+00:00",
+    "scraped_at": "2026-10-04T20:48:09.377498+00:00",
     "status": "OK",
     "name": "大須万松寺店",
     "prefecture": "愛知県",
@@ -40858,7 +40858,7 @@
   {
     "shop_id": "221",
     "url": "https://jankara.ne.jp/shop/221/",
-    "scraped_at": "2026-10-03T12:15:45.602686+00:00",
+    "scraped_at": "2026-10-04T20:48:18.202364+00:00",
     "status": "OK",
     "name": "刈谷駅前店",
     "prefecture": "愛知県",
@@ -41150,7 +41150,7 @@
   {
     "shop_id": "222",
     "url": "https://jankara.ne.jp/shop/222/",
-    "scraped_at": "2026-10-03T12:15:55.101412+00:00",
+    "scraped_at": "2026-10-04T20:48:26.580033+00:00",
     "status": "OK",
     "name": "宗右衛門町店",
     "prefecture": "大阪府",
@@ -41382,7 +41382,7 @@
   {
     "shop_id": "224",
     "url": "https://jankara.ne.jp/shop/224/",
-    "scraped_at": "2026-10-03T12:16:10.157088+00:00",
+    "scraped_at": "2026-10-04T20:48:35.107269+00:00",
     "status": "OK",
     "name": "昭和町駅前店",
     "prefecture": "大阪府",
@@ -41634,7 +41634,7 @@
   {
     "shop_id": "225",
     "url": "https://jankara.ne.jp/shop/225/",
-    "scraped_at": "2026-10-03T12:16:20.412424+00:00",
+    "scraped_at": "2026-10-04T20:48:43.512966+00:00",
     "status": "OK",
     "name": "富山駅前店",
     "prefecture": "富山県",
@@ -41926,7 +41926,7 @@
   {
     "shop_id": "226",
     "url": "https://jankara.ne.jp/shop/226/",
-    "scraped_at": "2026-10-03T12:16:30.214810+00:00",
+    "scraped_at": "2026-10-04T20:48:51.930563+00:00",
     "status": "OK",
     "name": "西中洲店",
     "prefecture": "福岡県",
@@ -42298,7 +42298,7 @@
   {
     "shop_id": "227",
     "url": "https://jankara.ne.jp/shop/227/",
-    "scraped_at": "2026-10-03T12:16:39.762762+00:00",
+    "scraped_at": "2026-10-04T20:49:00.315739+00:00",
     "status": "OK",
     "name": "寝屋川駅前店",
     "prefecture": "大阪府",
@@ -42550,7 +42550,7 @@
   {
     "shop_id": "228",
     "url": "https://jankara.ne.jp/shop/228/",
-    "scraped_at": "2026-10-03T12:16:50.047856+00:00",
+    "scraped_at": "2026-10-04T20:49:08.741848+00:00",
     "status": "OK",
     "name": "ジャジャーンカラ京大BOX店",
     "prefecture": "京都府",
@@ -42882,7 +42882,7 @@
   {
     "shop_id": "229",
     "url": "https://jankara.ne.jp/shop/229/",
-    "scraped_at": "2026-10-03T12:17:01.239640+00:00",
+    "scraped_at": "2026-10-04T20:49:17.894858+00:00",
     "status": "OK",
     "name": "ウエストコート姪浜店",
     "prefecture": "福岡県",
@@ -43074,7 +43074,7 @@
   {
     "shop_id": "230",
     "url": "https://jankara.ne.jp/shop/230/",
-    "scraped_at": "2026-10-03T12:17:12.834404+00:00",
+    "scraped_at": "2026-10-04T20:49:26.892711+00:00",
     "status": "OK",
     "name": "ディープ布施店",
     "prefecture": "大阪府",
@@ -43366,7 +43366,7 @@
   {
     "shop_id": "231",
     "url": "https://jankara.ne.jp/shop/231/",
-    "scraped_at": "2026-10-03T12:17:26.397496+00:00",
+    "scraped_at": "2026-10-04T20:49:35.510558+00:00",
     "status": "OK",
     "name": "石山駅直結店",
     "prefecture": "滋賀県",
@@ -43558,7 +43558,7 @@
   {
     "shop_id": "232",
     "url": "https://jankara.ne.jp/shop/232/",
-    "scraped_at": "2026-10-03T12:17:40.197307+00:00",
+    "scraped_at": "2026-10-04T20:49:43.847631+00:00",
     "status": "OK",
     "name": "みんなのJR茨木店",
     "prefecture": "大阪府",
@@ -43770,7 +43770,7 @@
   {
     "shop_id": "233",
     "url": "https://jankara.ne.jp/shop/233/",
-    "scraped_at": "2026-10-03T12:17:56.549145+00:00",
+    "scraped_at": "2026-10-04T20:49:52.201488+00:00",
     "status": "OK",
     "name": "天神西通り店",
     "prefecture": "福岡県",
@@ -44062,7 +44062,7 @@
   {
     "shop_id": "234",
     "url": "https://jankara.ne.jp/shop/234/",
-    "scraped_at": "2026-10-03T12:18:10.605148+00:00",
+    "scraped_at": "2026-10-04T20:50:00.575791+00:00",
     "status": "OK",
     "name": "アジアン天満店",
     "prefecture": "大阪府",
@@ -44434,7 +44434,7 @@
   {
     "shop_id": "235",
     "url": "https://jankara.ne.jp/shop/235/",
-    "scraped_at": "2026-10-03T12:18:22.736897+00:00",
+    "scraped_at": "2026-10-04T20:50:08.966567+00:00",
     "status": "OK",
     "name": "近鉄八尾店",
     "prefecture": "大阪府",
@@ -44666,7 +44666,7 @@
   {
     "shop_id": "236",
     "url": "https://jankara.ne.jp/shop/236/",
-    "scraped_at": "2026-10-03T12:18:38.941975+00:00",
+    "scraped_at": "2026-10-04T20:50:17.347854+00:00",
     "status": "OK",
     "name": "京橋Door4店",
     "prefecture": "大阪府",
@@ -45078,7 +45078,7 @@
   {
     "shop_id": "237",
     "url": "https://jankara.ne.jp/shop/237/",
-    "scraped_at": "2026-10-03T12:18:50.555476+00:00",
+    "scraped_at": "2026-10-04T20:50:26.228766+00:00",
     "status": "OK",
     "name": "東通白馬車ビル店",
     "prefecture": "大阪府",
@@ -45450,7 +45450,7 @@
   {
     "shop_id": "238",
     "url": "https://jankara.ne.jp/shop/238/",
-    "scraped_at": "2026-10-03T12:19:01.733664+00:00",
+    "scraped_at": "2026-10-04T20:50:34.614444+00:00",
     "status": "OK",
     "name": "上新庄ほんまに駅前店",
     "prefecture": "大阪府",
@@ -45722,7 +45722,7 @@
   {
     "shop_id": "239",
     "url": "https://jankara.ne.jp/shop/239/",
-    "scraped_at": "2026-10-03T12:19:13.849579+00:00",
+    "scraped_at": "2026-10-04T20:50:43.122390+00:00",
     "status": "OK",
     "name": "大街道二番町通り店",
     "prefecture": "愛媛県",
@@ -46094,7 +46094,7 @@
   {
     "shop_id": "240",
     "url": "https://jankara.ne.jp/shop/240/",
-    "scraped_at": "2026-10-03T12:19:25.630621+00:00",
+    "scraped_at": "2026-10-04T20:50:51.482077+00:00",
     "status": "OK",
     "name": "天文館通わっぜ駅前店",
     "prefecture": "鹿児島県",
@@ -46426,7 +46426,7 @@
   {
     "shop_id": "241",
     "url": "https://jankara.ne.jp/shop/241/",
-    "scraped_at": "2026-10-03T12:19:36.330157+00:00",
+    "scraped_at": "2026-10-04T20:51:00.412591+00:00",
     "status": "OK",
     "name": "JR六甲道駅みなみ店",
     "prefecture": "兵庫県",
@@ -46618,7 +46618,7 @@
   {
     "shop_id": "242",
     "url": "https://jankara.ne.jp/shop/242/",
-    "scraped_at": "2026-10-03T12:19:47.220823+00:00",
+    "scraped_at": "2026-10-04T20:51:08.847201+00:00",
     "status": "OK",
     "name": "姫路セントラル店",
     "prefecture": "兵庫県",
@@ -46950,7 +46950,7 @@
   {
     "shop_id": "243",
     "url": "https://jankara.ne.jp/shop/243/",
-    "scraped_at": "2026-10-03T12:19:58.467511+00:00",
+    "scraped_at": "2026-10-04T20:51:17.499980+00:00",
     "status": "OK",
     "name": "高槻シースー店",
     "prefecture": "大阪府",
@@ -47242,7 +47242,7 @@
   {
     "shop_id": "244",
     "url": "https://jankara.ne.jp/shop/244/",
-    "scraped_at": "2026-10-03T12:20:09.679785+00:00",
+    "scraped_at": "2026-10-04T20:51:25.907927+00:00",
     "status": "OK",
     "name": "ニッケパークタウン加古川レンガ館",
     "prefecture": "兵庫県",
@@ -47474,7 +47474,7 @@
   {
     "shop_id": "245",
     "url": "https://jankara.ne.jp/shop/245/",
-    "scraped_at": "2026-10-03T12:20:21.363063+00:00",
+    "scraped_at": "2026-10-04T20:51:34.255875+00:00",
     "status": "OK",
     "name": "天神大名Resort＆Uta",
     "prefecture": "福岡県",
@@ -47886,7 +47886,7 @@
   {
     "shop_id": "246",
     "url": "https://jankara.ne.jp/shop/246/",
-    "scraped_at": "2026-10-03T12:20:34.630709+00:00",
+    "scraped_at": "2026-10-04T20:51:42.615350+00:00",
     "status": "OK",
     "name": "セルフでジョイ有楽街店",
     "prefecture": "静岡県",
@@ -48158,7 +48158,7 @@
   {
     "shop_id": "247",
     "url": "https://jankara.ne.jp/shop/247/",
-    "scraped_at": "2026-10-03T12:20:45.450216+00:00",
+    "scraped_at": "2026-10-04T20:51:51.109364+00:00",
     "status": "OK",
     "name": "すすきの交差店",
     "prefecture": "北海道",
@@ -48350,7 +48350,7 @@
   {
     "shop_id": "248",
     "url": "https://jankara.ne.jp/shop/248/",
-    "scraped_at": "2026-10-03T12:20:56.223533+00:00",
+    "scraped_at": "2026-10-04T20:51:59.529665+00:00",
     "status": "OK",
     "name": "京都河原町近江屋店",
     "prefecture": "京都府",
@@ -48722,7 +48722,7 @@
   {
     "shop_id": "249",
     "url": "https://jankara.ne.jp/shop/249/",
-    "scraped_at": "2026-10-03T12:21:08.914484+00:00",
+    "scraped_at": "2026-10-04T20:52:08.091456+00:00",
     "status": "OK",
     "name": "セルフでよかよ小倉店",
     "prefecture": "福岡県",
@@ -48974,7 +48974,7 @@
   {
     "shop_id": "250",
     "url": "https://jankara.ne.jp/shop/250/",
-    "scraped_at": "2026-10-03T12:21:19.454115+00:00",
+    "scraped_at": "2026-10-04T20:52:16.455998+00:00",
     "status": "OK",
     "name": "みんなの塚本駅前店",
     "prefecture": "大阪府",
@@ -49186,7 +49186,7 @@
   {
     "shop_id": "251",
     "url": "https://jankara.ne.jp/shop/251/",
-    "scraped_at": "2026-10-03T12:21:29.955990+00:00",
+    "scraped_at": "2026-10-04T20:52:24.899672+00:00",
     "status": "OK",
     "name": "スーパージャンカラ栄プレミアム",
     "prefecture": "愛知県",
@@ -49298,7 +49298,7 @@
   {
     "shop_id": "252",
     "url": "https://jankara.ne.jp/shop/252/",
-    "scraped_at": "2026-10-03T12:21:43.504820+00:00",
+    "scraped_at": "2026-10-04T20:52:33.835941+00:00",
     "status": "OK",
     "name": "西新中央商店街店",
     "prefecture": "福岡県",
@@ -49570,7 +49570,7 @@
   {
     "shop_id": "253",
     "url": "https://jankara.ne.jp/shop/253/",
-    "scraped_at": "2026-10-03T12:21:55.725094+00:00",
+    "scraped_at": "2026-10-04T20:52:42.768790+00:00",
     "status": "OK",
     "name": "スーパージャンカラあべのプレミアム",
     "prefecture": "大阪府",
@@ -49762,7 +49762,7 @@
   {
     "shop_id": "254",
     "url": "https://jankara.ne.jp/shop/254/",
-    "scraped_at": "2026-10-03T12:22:07.562496+00:00",
+    "scraped_at": "2026-10-04T20:52:51.668321+00:00",
     "status": "OK",
     "name": "香椎アオハル店",
     "prefecture": "福岡県",
@@ -50054,7 +50054,7 @@
   {
     "shop_id": "255",
     "url": "https://jankara.ne.jp/shop/255/",
-    "scraped_at": "2026-10-03T12:22:18.105685+00:00",
+    "scraped_at": "2026-10-04T20:53:00.001614+00:00",
     "status": "OK",
     "name": "ENTERTAINMENT HUB KYOTO店（京都駅前）",
     "prefecture": "京都府",
@@ -50386,7 +50386,7 @@
   {
     "shop_id": "256",
     "url": "https://jankara.ne.jp/shop/256/",
-    "scraped_at": "2026-10-03T12:22:29.351104+00:00",
+    "scraped_at": "2026-10-04T20:53:08.429778+00:00",
     "status": "OK",
     "name": "下通どまんなか店",
     "prefecture": "熊本県",
@@ -50758,7 +50758,7 @@
   {
     "shop_id": "257",
     "url": "https://jankara.ne.jp/shop/257/",
-    "scraped_at": "2026-10-03T12:22:40.684518+00:00",
+    "scraped_at": "2026-10-04T20:53:17.201708+00:00",
     "status": "OK",
     "name": "庄内駅東口店",
     "prefecture": "大阪府",
@@ -50950,7 +50950,7 @@
   {
     "shop_id": "258",
     "url": "https://jankara.ne.jp/shop/258/",
-    "scraped_at": "2026-10-03T12:22:52.146050+00:00",
+    "scraped_at": "2026-10-04T20:53:25.537693+00:00",
     "status": "OK",
     "name": "オールナイト関大前店",
     "prefecture": "大阪府",
@@ -51242,7 +51242,7 @@
   {
     "shop_id": "259",
     "url": "https://jankara.ne.jp/shop/259/",
-    "scraped_at": "2026-10-03T12:23:03.163555+00:00",
+    "scraped_at": "2026-10-04T20:53:33.936874+00:00",
     "status": "OK",
     "name": "三宮生田BEAT店",
     "prefecture": "兵庫県",
@@ -51614,7 +51614,7 @@
   {
     "shop_id": "260",
     "url": "https://jankara.ne.jp/shop/260/",
-    "scraped_at": "2026-10-03T12:23:14.078346+00:00",
+    "scraped_at": "2026-10-04T20:53:42.632514+00:00",
     "status": "OK",
     "name": "枚方駅から5秒店",
     "prefecture": "大阪府",
@@ -51906,7 +51906,7 @@
   {
     "shop_id": "261",
     "url": "https://jankara.ne.jp/shop/261/",
-    "scraped_at": "2026-10-03T12:23:23.550486+00:00",
+    "scraped_at": "2026-10-04T20:53:51.027857+00:00",
     "status": "OK",
     "name": "セルフでいっちゃが橘通店",
     "prefecture": "宮崎県",
@@ -52238,7 +52238,7 @@
   {
     "shop_id": "262",
     "url": "https://jankara.ne.jp/shop/262/",
-    "scraped_at": "2026-10-03T12:23:32.898645+00:00",
+    "scraped_at": "2026-10-04T20:53:59.396361+00:00",
     "status": "OK",
     "name": "那覇国際通り本店",
     "prefecture": "沖縄県",
@@ -52430,7 +52430,7 @@
   {
     "shop_id": "263",
     "url": "https://jankara.ne.jp/shop/263/",
-    "scraped_at": "2026-10-03T12:23:42.341229+00:00",
+    "scraped_at": "2026-10-04T20:54:07.755361+00:00",
     "status": "OK",
     "name": "Re:知立駅前店",
     "prefecture": "愛知県",
@@ -52702,7 +52702,7 @@
   {
     "shop_id": "264",
     "url": "https://jankara.ne.jp/shop/264/",
-    "scraped_at": "2026-10-03T12:23:58.057057+00:00",
+    "scraped_at": "2026-10-04T20:54:23.245821+00:00",
     "status": "OK",
     "name": "セルフにしはる？西院店",
     "prefecture": "京都府",
@@ -53074,7 +53074,7 @@
   {
     "shop_id": "265",
     "url": "https://jankara.ne.jp/shop/265/",
-    "scraped_at": "2026-10-03T12:24:07.797113+00:00",
+    "scraped_at": "2026-10-04T20:54:31.604181+00:00",
     "status": "OK",
     "name": "博多駅博多口はかた駅前通り店",
     "prefecture": "福岡県",
@@ -53406,7 +53406,7 @@
   {
     "shop_id": "266",
     "url": "https://jankara.ne.jp/shop/266/",
-    "scraped_at": "2026-10-03T12:24:24.178379+00:00",
+    "scraped_at": "2026-10-04T20:54:40.205966+00:00",
     "status": "OK",
     "name": "セルフの方のなんば店",
     "prefecture": "大阪府",
@@ -53678,7 +53678,7 @@
   {
     "shop_id": "267",
     "url": "https://jankara.ne.jp/shop/267/",
-    "scraped_at": "2026-10-03T12:24:39.415950+00:00",
+    "scraped_at": "2026-10-04T20:54:48.547369+00:00",
     "status": "OK",
     "name": "Night Out 木屋町店",
     "prefecture": "京都府",
@@ -54050,7 +54050,7 @@
   {
     "shop_id": "268",
     "url": "https://jankara.ne.jp/shop/268/",
-    "scraped_at": "2026-10-03T12:24:49.086530+00:00",
+    "scraped_at": "2026-10-04T20:54:56.912148+00:00",
     "status": "OK",
     "name": "大名小前パムセ店",
     "prefecture": "福岡県",
@@ -54382,7 +54382,7 @@
   {
     "shop_id": "269",
     "url": "https://jankara.ne.jp/shop/269/",
-    "scraped_at": "2026-10-03T12:24:58.644979+00:00",
+    "scraped_at": "2026-10-04T20:55:05.344520+00:00",
     "status": "OK",
     "name": "道頓堀だるま店",
     "prefecture": "大阪府",
@@ -54654,7 +54654,7 @@
   {
     "shop_id": "270",
     "url": "https://jankara.ne.jp/shop/270/",
-    "scraped_at": "2026-10-03T12:25:15.770301+00:00",
+    "scraped_at": "2026-10-04T20:55:21.253648+00:00",
     "status": "OK",
     "name": "新長田駅前店",
     "prefecture": "兵庫県",
@@ -54886,7 +54886,7 @@
   {
     "shop_id": "271",
     "url": "https://jankara.ne.jp/shop/271/",
-    "scraped_at": "2026-10-03T12:25:26.618351+00:00",
+    "scraped_at": "2026-10-04T20:55:29.678968+00:00",
     "status": "OK",
     "name": "すすきの狸小路店",
     "prefecture": "北海道",
@@ -55178,7 +55178,7 @@
   {
     "shop_id": "272",
     "url": "https://jankara.ne.jp/shop/272/",
-    "scraped_at": "2026-10-03T12:25:38.208990+00:00",
+    "scraped_at": "2026-10-04T20:55:38.163055+00:00",
     "status": "OK",
     "name": "ヨイドコロ天満店",
     "prefecture": "大阪府",
@@ -55510,7 +55510,7 @@
   {
     "shop_id": "273",
     "url": "https://jankara.ne.jp/shop/273/",
-    "scraped_at": "2026-10-03T12:25:48.164072+00:00",
+    "scraped_at": "2026-10-04T20:55:46.515776+00:00",
     "status": "OK",
     "name": "大橋駅前店",
     "prefecture": "福岡県",
@@ -55842,7 +55842,7 @@
   {
     "shop_id": "274",
     "url": "https://jankara.ne.jp/shop/274/",
-    "scraped_at": "2026-10-03T12:25:58.135747+00:00",
+    "scraped_at": "2026-10-04T20:55:54.875191+00:00",
     "status": "OK",
     "name": "ジ・アウトレット北九州店",
     "prefecture": "福岡県",
@@ -56014,7 +56014,7 @@
   {
     "shop_id": "275",
     "url": "https://jankara.ne.jp/shop/275/",
-    "scraped_at": "2026-10-03T12:26:07.522940+00:00",
+    "scraped_at": "2026-10-04T20:56:03.660038+00:00",
     "status": "OK",
     "name": "長崎駅前店",
     "prefecture": "長崎県",
@@ -56246,7 +56246,7 @@
   {
     "shop_id": "276",
     "url": "https://jankara.ne.jp/shop/276/",
-    "scraped_at": "2026-10-03T12:26:16.582185+00:00",
+    "scraped_at": "2026-10-04T20:56:12.009948+00:00",
     "status": "OK",
     "name": "地下鉄平野店",
     "prefecture": "大阪府",
@@ -56438,7 +56438,7 @@
   {
     "shop_id": "277",
     "url": "https://jankara.ne.jp/shop/277/",
-    "scraped_at": "2026-10-03T12:26:26.433988+00:00",
+    "scraped_at": "2026-10-04T20:56:20.375192+00:00",
     "status": "OK",
     "name": "旭川3条店",
     "prefecture": "北海道",
@@ -56570,7 +56570,7 @@
   {
     "shop_id": "278",
     "url": "https://jankara.ne.jp/shop/278/",
-    "scraped_at": "2026-10-03T12:26:37.300496+00:00",
+    "scraped_at": "2026-10-04T20:56:28.785631+00:00",
     "status": "OK",
     "name": "本通ぶちまんなか店じゃけえ",
     "prefecture": "広島県",
@@ -56762,7 +56762,7 @@
   {
     "shop_id": "279",
     "url": "https://jankara.ne.jp/shop/279/",
-    "scraped_at": "2026-10-03T12:26:48.883667+00:00",
+    "scraped_at": "2026-10-04T20:56:37.212472+00:00",
     "status": "OK",
     "name": "セントポルタ中央町店",
     "prefecture": "大分県",
