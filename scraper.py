@@ -551,6 +551,10 @@ def main():
     # 対象店舗リストを決定
     # --shop-ids 指定時のみ事前にリストを組み立て、それ以外は main_async 内で収集
     if args.shop_ids:
+        # 店舗IDは URL とデータにそのまま入るため、一覧収集と同じ「3桁以上の数字」に限る
+        invalid = [sid for sid in args.shop_ids if not re.fullmatch(r"\d{3,}", sid)]
+        if invalid:
+            parser.error(f"--shop-ids は3桁以上の数字で指定してください（不正な値: {invalid}）")
         shop_list_hint: list[dict] | None = [
             {"shop_id": sid, "url": SHOP_URL_TEMPLATE.format(shop_id=sid)}
             for sid in args.shop_ids
