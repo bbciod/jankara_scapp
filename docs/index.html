@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 万一 XSS が混入しても外部スクリプトの読み込み・外部送信をさせないよう、自サイトのファイルのみ許可する
+     （GitHub Pages はレスポンスヘッダを設定できないため meta で指定。frame-ancestors は meta では効かない） -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>ジャンカラ料金比較</title>
 <link rel="stylesheet" href="style.css">
 </head>
