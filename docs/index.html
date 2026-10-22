@@ -34,6 +34,9 @@
         <label>予算（円以下・任意）
           <input type="number" id="priceMax" min="0" step="100" placeholder="例: 3000">
         </label>
+        <label class="check-label">
+          <input type="checkbox" id="soloMode"> 1名で利用する（1名利用時の料金で比較）
+        </label>
       </div>
 
       <div class="filter-grid">
@@ -80,6 +83,7 @@
       <span id="resultCount" class="result-count"></span>
     </div>
 
+    <p id="soloNote" class="results-note"></p>
     <p id="cardNote" class="results-note"></p>
     <div id="cardResults" class="card-results"></div>
 
