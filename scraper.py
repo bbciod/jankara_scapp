@@ -355,7 +355,7 @@ def extract_price_table(soup: BeautifulSoup) -> list[dict]:
 
             results.append({
                 "section":  section_name,
-                # \u7a7a\u767d\u306e\u6709\u7121\u304c\u5e97\u30fb\u8868\u3067\u63fa\u308c\u308b\u305f\u3081\u9664\u3044\u3066\u63c3\u3048\u308b\uff081\u540d\u6599\u91d1\u306e\u8868\u3068\u7167\u5408\u3059\u308b\u305f\u3081\uff09
+                # 空白の有無が店・表で揺れるため除いて揃える（1名料金の表と照合するため）
                 "plan":     re.sub(r"\s+", "", plan_name),
                 "day_type": day_type,
                 **prices,
