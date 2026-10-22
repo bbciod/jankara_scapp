@@ -278,6 +278,8 @@ def extract_price_table(soup: BeautifulSoup) -> list[dict]:
     # フォールバック: スーパージャンカラ系（105/106/251/253 等）は div#price 直下が
     # 全体を包む div.container 1つで、起点の兄弟要素が存在せず表を1つも拾えない。
     # 兄弟走査で0件のときだけ div#price 配下の表を全件対象にする（通常店の挙動は不変）。
+    # なおスーパージャンカラ系の <table> は1名料金だけで、通常料金は div の格子で
+    # 描画されている（後段の _extract_sjk_price_grid で読む）。
     if not tables and price_section:
         tables = price_section.find_all("table")
 
@@ -286,6 +288,10 @@ def extract_price_table(soup: BeautifulSoup) -> list[dict]:
         rows = table.find_all("tr")
         if not rows:
             continue
+
+        # 1名利用時の料金表（「1名様は追加料金が発生する時間帯がございます」の下）は
+        # .hitokara_cnt 内にある。通常料金と混ぜないよう行に印を付ける。
+        solo = table.find_parent(class_="hitokara_cnt") is not None
 
         # ヘッダー行
         headers = [c.get_text(strip=True) for c in rows[0].find_all(["th", "td"])]
@@ -349,11 +355,82 @@ def extract_price_table(soup: BeautifulSoup) -> list[dict]:
 
             results.append({
                 "section":  section_name,
-                "plan":     re.sub(r"\u3000", " ", plan_name).strip(),
+                # \u7a7a\u767d\u306e\u6709\u7121\u304c\u5e97\u30fb\u8868\u3067\u63fa\u308c\u308b\u305f\u3081\u9664\u3044\u3066\u63c3\u3048\u308b\uff081\u540d\u6599\u91d1\u306e\u8868\u3068\u7167\u5408\u3059\u308b\u305f\u3081\uff09
+                "plan":     re.sub(r"\s+", "", plan_name),
                 "day_type": day_type,
                 **prices,
+                "solo":     solo,
             })
 
+    if price_section:
+        results.extend(_extract_sjk_price_grid(price_section))
+
+    return results
+
+
+def _sjk_section_name(body) -> str:
+    """
+    スーパージャンカラ系の格子の区分名（例: 昼ドリンク飲み放題）を返す。
+    格子は時間帯ごとのブロック（div.sjkprice）にまとまっており、ブロック先頭のプラン見出しが
+    「昼」「夜」「深夜」「朝フリータイム」のように時間帯で始まる。通常店の表の見出しや
+    1名料金の表の見出しと揃うよう、ブロック単位で「時間帯＋ドリンク飲み放題」にする。
+    """
+    block = body.find_parent("div", class_="sjkprice")
+    head = block.select_one(".sjkprice__header--title") if block else None
+    if not head:
+        return ""
+    first = head.find("span")
+    m = re.match(r"(深夜|夕方|朝|昼|夜)", first.get_text(strip=True) if first else "")
+    drink = head.select_one(".drink-suggest")
+    return (m.group(1) if m else "") + (drink.get_text(strip=True) if drink else "")
+
+
+def _extract_sjk_price_grid(price_section) -> list[dict]:
+    """
+    スーパージャンカラ系の通常料金（<table> ではなく div の格子）を読む。
+
+    1プラン = div.sjkprice__body で、子は次の3つ:
+      - .sjkprice__wrapper--header : 会員区分の見出し（店により5列 or「会員・一般」の2列）
+      - .sjkprice__wrapper--course : 先頭がプラン名(.sjkprice__cell--course)、続いて曜日セル
+      - .sjkprice__wrapper--price  : 料金セル。曜日ごとに見出しの列数ぶん並ぶ（行優先）
+    区分名（例: 昼ドリンク飲み放題）は時間帯ブロック単位で付ける（_sjk_section_name）。
+    """
+    results: list[dict] = []
+    for body in price_section.select(".sjkprice__body"):
+        if body.find_parent(class_="hitokara_cnt"):
+            continue  # 1名料金側は <table> で読むので、ここでは通常料金だけ
+
+        headers = [c.get_text(strip=True) for c in body.select(".sjkprice__wrapper--header .sjkprice__cell")]
+        course_wrap = body.select_one(".sjkprice__wrapper--course")
+        price_cells = body.select(".sjkprice__wrapper--price .sjkprice__cell--price")
+        if not headers or not course_wrap:
+            continue
+        course_cell = course_wrap.select_one(".sjkprice__cell--course")
+        if not course_cell:
+            continue
+        # 表側（<table>）と同じく空白を除き、1名料金の表と照合できるようにする
+        plan_name = re.sub(r"\s+", "", course_cell.get_text(strip=True))
+        days = [c.get_text(strip=True) for c in course_wrap.find_all("div", recursive=False)
+                if c is not course_cell]
+        if not days or len(price_cells) != len(headers) * len(days):
+            log.warning(f"料金格子の形が想定外のためスキップ: {plan_name}")
+            continue
+
+        section_name = _sjk_section_name(body)
+        for di, day in enumerate(days):
+            row_cells = price_cells[di * len(headers):(di + 1) * len(headers)]
+            by_col = {h: c.get_text(strip=True) for h, c in zip(headers, row_cells)}
+            prices: dict[str, int | None] = {}
+            for col in MEMBER_COLS:
+                raw = re.sub(r"[¥￥,\s]", "", by_col.get(col, ""))
+                prices[col] = int(raw) if re.fullmatch(r"\d+", raw) else None
+            results.append({
+                "section":  section_name,
+                "plan":     plan_name,
+                "day_type": day,
+                **prices,
+                "solo":     False,
+            })
     return results
 
 # ──────────────────────────────────────────────────────────
