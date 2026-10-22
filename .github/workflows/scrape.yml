@@ -40,9 +40,17 @@ jobs:
         run: playwright install chromium --with-deps
 
       - name: Run scraper
+        # 入力を ${{ }} でスクリプトに直接埋め込むと、"; 任意コマンド" のような値で
+        # シェルインジェクションが起きる。環境変数で渡し、数字とスペースだけを許可する。
+        env:
+          SHOP_IDS: ${{ github.event.inputs.shop_ids }}
         run: |
-          if [ -n "${{ github.event.inputs.shop_ids }}" ]; then
-            python scraper.py --shop-ids ${{ github.event.inputs.shop_ids }}
+          if [ -n "$SHOP_IDS" ]; then
+            if ! printf '%s' "$SHOP_IDS" | grep -Eq '^ *[0-9]{3,}( +[0-9]{3,})* *$'; then
+              echo "::error::shop_ids は3桁以上の店舗IDをスペース区切りで指定してください"
+              exit 1
+            fi
+            python scraper.py --shop-ids $SHOP_IDS
           else
             python scraper.py
           fi
