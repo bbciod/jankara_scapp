@@ -66,6 +66,7 @@ async function init() {
   memberSel.innerHTML = MEMBER_TYPES.map(m => `<option value="${m}">${m}</option>`).join("");
   memberSel.value = "会員";
   memberSel.addEventListener("change", onFilterChange);
+  document.getElementById("soloMode").addEventListener("change", onFilterChange);
 
   setupExclusiveChipGroup("prefFilters", buildPrefOptions(), onFilterChange);
   setupExclusiveChipGroup("sectionFilters", buildSectionOptions(), onFilterChange);
@@ -100,6 +101,7 @@ function buildFlatRows(shops) {
         plan_detail: planDetail,
         plan_type: classifyPlan(planDetail),
         day_type: p.day_type || "",
+        solo: p.solo === true, // 1名利用時の料金か（通常料金と混ぜずに比較する）
         prices: {
           "一般": p["一般"], "会員": p["会員"], "学生": p["学生"],
           "学生会員": p["学生会員"], "シニア": p["シニア"],
@@ -127,6 +129,17 @@ function displayPrice(row, member) {
 
 function getMemberType() {
   return document.getElementById("memberType").value;
+}
+
+// 1名で利用するか（オンなら1名利用時の料金、オフなら通常料金で比較する）
+function isSoloMode() {
+  return document.getElementById("soloMode").checked;
+}
+
+// 1名料金を掲載していない店舗の数（1名モードでは表示できない）
+function countShopsWithoutSolo() {
+  const withSolo = new Set(flatRows.filter(r => r.solo).map(r => r.shop_id));
+  return new Set(flatRows.filter(r => !withSolo.has(r.shop_id)).map(r => r.shop_id)).size;
 }
 
 // ===== フィルタ選択肢の構築 =====
@@ -217,10 +230,11 @@ function setViewMode(mode) {
 }
 
 // ===== 検索・比較ロジック（固定順）=====
-// 1.比較軸(会員区分) 2.カテゴリ絞り込み 3.null除外 4.しきい値 5.昇順ソート 6.サマリー
+// 1.比較軸(会員区分・利用人数) 2.カテゴリ絞り込み 3.null除外 4.しきい値 5.昇順ソート 6.サマリー
 
 function buildFilteredRows() {
   const member = getMemberType();
+  const solo = isSoloMode();
   const prefs = getSelectedValues("prefFilters");
   const sections = getSelectedValues("sectionFilters");
   const planTypes = getSelectedValues("planTypeFilters");
@@ -230,6 +244,7 @@ function buildFilteredRows() {
 
   const rows = [];
   for (const r of flatRows) {
+    if (r.solo !== solo) continue;                        // 通常料金と1名料金を混ぜない
     if (prefs.length && !prefs.includes(r.pref)) continue;
     if (sections.length && !sections.includes(r.section)) continue;
     if (planTypes.length && !planTypes.includes(r.plan_type)) continue;
@@ -261,6 +276,9 @@ function renderConditionChips() {
 
   // 会員区分は常に表示（比較軸なので×は付けない）
   chips.push({ text: `会員区分: ${member}`, fixed: true });
+  if (isSoloMode()) {
+    chips.push({ text: "利用人数: 1名", clear: () => { document.getElementById("soloMode").checked = false; onFilterChange(); } });
+  }
 
   const addGroup = (containerId, label) => {
     for (const v of getSelectedValues(containerId)) {
@@ -313,6 +331,12 @@ function renderResults() {
   document.getElementById("summaryAvg").textContent = summary.avg != null ? `¥${summary.avg.toLocaleString()}` : "—";
   document.getElementById("resultCount").textContent = `${rows.length.toLocaleString()} 件（安い順）`;
 
+  // 1名モードでは、1名料金を掲載していない店舗が出てこない理由をカード・一覧表の両方で示す
+  const missing = isSoloMode() ? countShopsWithoutSolo() : 0;
+  document.getElementById("soloNote").textContent = missing
+    ? `1名利用時の料金を掲載していない ${missing} 店は表示されません。`
+    : "";
+
   if (viewMode === "card") {
     renderCardResults(rows);
   } else {
@@ -359,7 +383,7 @@ function renderCardResults(rows) {
           </div>
           <div class="card-price">
             <div class="price-main">¥${r._price.toLocaleString()}</div>
-            <div class="price-label">${escapeHtml(member)}</div>
+            <div class="price-label">${escapeHtml(member)}${r.solo ? "（1名）" : ""}</div>
             ${others ? `<div class="price-others">${escapeHtml(others)}</div>` : ""}
             <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener">店舗ページ ↗</a>
           </div>
@@ -378,7 +402,8 @@ function renderTableResults(rows) {
     return;
   }
 
-  const head = ["都道府県", "店舗名", "時間帯", "プラン種別", "プラン詳細", "曜日", `★${member}`, ...others, ""];
+  const suffix = isSoloMode() ? "（1名）" : "";
+  const head = ["都道府県", "店舗名", "時間帯", "プラン種別", "プラン詳細", "曜日", `★${member}${suffix}`, ...others.map(m => m + suffix), ""];
   let html = "<table><thead><tr>" + head.map(h => `<th>${escapeHtml(h)}</th>`).join("") + "</tr></thead><tbody>";
   for (const r of rows) {
     const cells = [
