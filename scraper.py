@@ -48,7 +48,18 @@ BROWSER_UA = (
 )
 
 # リクエスト間ウェイト（秒）—— ページ描画完了後に追加で待機
-SLEEP_SEC   = 4.0
+# 2026-11 からサイトにレート制限（HTTP 429）が入り、4秒では足りなくなったため8秒にした。
+# 1ページを開くと JS 等のサブリクエストが多数出るので、ページ間は余裕をもって空ける。
+SLEEP_SEC   = 8.0
+
+# レート制限（429/503）を受けたときの待ち時間（秒）。Retry-After があればそちらを優先する。
+# 待っても解除されなければ実行全体を中止する（制限は回避せず、従う）。
+RATE_LIMIT_BACKOFF_SEC = [60, 120, 240, 480]
+RATE_LIMIT_MAX_WAIT_SEC = 900
+
+# フル実行の安全装置: 取得できた店舗数・OK数が実行前の既存データのこの割合を下回ったら、
+# 一部しか取れていないとみなして上書きしない（2026-11-17 に92店のデータで上書きした事故の再発防止）
+MIN_FULL_CRAWL_RATIO = 0.9
 
 # 料金表テーブルが描画されるまでの最大待機時間（ms）
 PRICE_TABLE_TIMEOUT = 15_000   # 15秒
@@ -136,6 +147,36 @@ def check_robots_once() -> bool:
 
 
 # ──────────────────────────────────────────────────────────
+# レート制限に従ってページを開く
+# ──────────────────────────────────────────────────────────
+class RateLimitExceeded(Exception):
+    """サイトのレート制限（429/503）が、待っても解除されなかった。実行全体を中止する。"""
+
+
+async def goto_polite(page: Page, url: str):
+    """
+    page.goto のラッパー。サイトがレート制限（HTTP 429 / 503）を返したら、Retry-After
+    （無ければ RATE_LIMIT_BACKOFF_SEC の順）だけ待って再試行する。
+    制限は「速度を落としてほしい」というサイトの意思表示なので回避はせず、
+    待っても解除されなければ RateLimitExceeded で止める。
+    """
+    for attempt, backoff in enumerate([*RATE_LIMIT_BACKOFF_SEC, None], 1):
+        resp = await page.goto(url, wait_until="domcontentloaded", timeout=30_000)
+        status = resp.status if resp else None
+        if status not in (429, 503):
+            return resp
+        if backoff is None:
+            raise RateLimitExceeded(f"{url} が HTTP {status} のまま解除されません（{attempt}回試行）")
+        retry_after = (resp.headers.get("retry-after") or "").strip()
+        wait = min(int(retry_after), RATE_LIMIT_MAX_WAIT_SEC) if retry_after.isdigit() else backoff
+        log.warning(
+            f"  HTTP {status}（レート制限）: {wait} 秒待って再試行します"
+            f"（{attempt}/{len(RATE_LIMIT_BACKOFF_SEC)}）"
+        )
+        await asyncio.sleep(wait)
+
+
+# ──────────────────────────────────────────────────────────
 # 全店舗URL収集（Playwright版: 一覧ページもCSRのため）
 # ──────────────────────────────────────────────────────────
 async def collect_all_shop_urls(page: Page) -> list[dict]:
@@ -152,15 +193,15 @@ async def collect_all_shop_urls(page: Page) -> list[dict]:
          リトライしても0件なら該当なし or 恒常的失敗とみなす（推測しない）。
     """
     LIST_TIMEOUT      = 12_000   # 店舗リンク描画待ちの最大（ms）
-    LIST_SLEEP_SEC    = 2.5      # エリア間ウェイト（秒）
+    LIST_SLEEP_SEC    = 6.0      # エリア間ウェイト（秒）。レート制限対策で 2.5→6 秒
     LIST_MAX_ATTEMPTS = 3        # 0件エリアのリトライ回数（取りこぼし防止）
     RETRY_SLEEP_SEC   = 3.0      # リトライ間ウェイト（秒）
     SHOP_LINK_SEL     = "a[href*='/shop/']"
 
     async def fetch_area_ids(url: str) -> list[str]:
         """1エリアのページを描画し、/shop/XXX/ の店舗IDを列挙して返す。"""
-        # domcontentloaded で確実に遷移（networkidle は使わない。上記の理由）
-        await page.goto(url, wait_until="domcontentloaded", timeout=30_000)
+        # domcontentloaded で確実に遷移（networkidle は使わない。上記の理由）。429 は待って再試行
+        await goto_polite(page, url)
         # networkidle はベストエフォート（失敗しても続行）
         try:
             await page.wait_for_load_state("networkidle", timeout=8_000)
@@ -191,6 +232,8 @@ async def collect_all_shop_urls(page: Page) -> list[dict]:
         for attempt in range(1, LIST_MAX_ATTEMPTS + 1):
             try:
                 ids = await fetch_area_ids(url)
+            except RateLimitExceeded:
+                raise
             except Exception as e:
                 log.warning(f"  a={area_id} 取得失敗 (試行 {attempt}/{LIST_MAX_ATTEMPTS}): {e}")
                 ids = []
@@ -467,7 +510,7 @@ async def scrape_shop_pw(page: Page, shop_id: str) -> dict:
         # ページ遷移 —— まず domcontentloaded で確実に遷移する。
         # （networkidle を goto の待機条件にすると、解析タグ等で常時通信が走る
         #  ページでは永久に idle にならずタイムアウトする。263/269 がこれに該当。）
-        await page.goto(url, wait_until="domcontentloaded", timeout=30_000)
+        await goto_polite(page, url)   # 429 は待って再試行（解除されなければ実行中止）
 
         # JS完了の目安として networkidle をベストエフォートで待つ（失敗しても続行）
         try:
@@ -496,6 +539,8 @@ async def scrape_shop_pw(page: Page, shop_id: str) -> dict:
         )
         return {**base, "status": status, **basic, "price_table": prices}
 
+    except RateLimitExceeded:
+        raise
     except Exception as e:
         log.error(f"[{shop_id}] スクレイプ失敗: {e}")
         return {**base, "status": "FETCH_ERROR", "price_table": []}
@@ -515,6 +560,7 @@ async def main_async(shop_list_hint: list[dict] | None, merge: bool = False):
                 既存データを消さずに該当店舗だけ更新する）
     """
     OUTPUT_DIR.mkdir(exist_ok=True)
+    baseline = _dataset_counts()   # 実行前の既存データ（フル実行の安全装置の基準）
     all_data: list[dict] = []
     ok_count = error_count = 0
 
@@ -568,9 +614,10 @@ async def main_async(shop_list_hint: list[dict] | None, merge: bool = False):
             else:
                 error_count += 1
 
-            # 途中保存（10件ごと）
+            # 途中保存（10件ごと）。フル実行でも途中は「既存へのマージ」で保存し、
+            # 中断しても既存データが途中までの分で置き換わらないようにする。
             if i % 10 == 0:
-                _save(all_data, merge=merge)
+                _save(all_data, merge=True)
                 log.info(f"  中間保存: {i} 件完了")
 
             # 次のリクエストまで待機
@@ -578,6 +625,14 @@ async def main_async(shop_list_hint: list[dict] | None, merge: bool = False):
                 await asyncio.sleep(SLEEP_SEC)
 
         await browser.close()
+
+    # フル実行の安全装置: 一部しか取れなかった結果で全体を置き換えない
+    if not merge:
+        problem = _degraded_crawl_reason(all_data, baseline)
+        if problem:
+            _save(all_data, merge=True)   # 取れた分だけ既存へマージ（上書きはしない）
+            log.error(f"❌ {problem}。既存データの置き換えを中止しました（取得できた分のみ既存データへマージ）。")
+            raise SystemExit(1)
 
     saved_total = _save(all_data, merge=merge)
     log.info(
@@ -591,11 +646,36 @@ async def main_async(shop_list_hint: list[dict] | None, merge: bool = False):
     return all_data
 
 
+def _dataset_counts() -> tuple[int, int]:
+    """既存データの（店舗数, OK 店舗数）。ファイルが無ければ (0, 0)。"""
+    if not OUTPUT_FILE.exists():
+        return 0, 0
+    try:
+        with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+    except Exception:
+        return 0, 0
+    return len(existing), sum(1 for s in existing if s.get("status") == "OK")
+
+
+def _degraded_crawl_reason(data: list[dict], baseline: tuple[int, int]) -> str | None:
+    """フル実行の結果が実行前より大きく欠けていれば、その理由を返す（問題なければ None）。"""
+    prev_total, prev_ok = baseline
+    new_total = len(data)
+    new_ok = sum(1 for s in data if s.get("status") == "OK")
+    if prev_total and new_total < prev_total * MIN_FULL_CRAWL_RATIO:
+        return f"取得できた店舗数が実行前の {prev_total} 店から {new_total} 店に減っています"
+    if prev_ok and new_ok < prev_ok * MIN_FULL_CRAWL_RATIO:
+        return f"OK の店舗数が実行前の {prev_ok} 店から {new_ok} 店に減っています"
+    return None
+
+
 def _save(data: list[dict], merge: bool = False) -> int:
     """
-    data を data/shops_data.json に保存する。
+    data を docs/data/shops_data.json に保存する。
     merge=True かつ既存ファイルがある場合は shop_id 単位でマージし、
     今回取得分だけを上書き更新する（他店舗は温存）。
+    ただし取得に失敗した店舗（OK 以外）で、既存の OK データを消すことはしない。
     戻り値は保存後の総店舗数。
     """
     OUTPUT_DIR.mkdir(exist_ok=True)
@@ -609,6 +689,9 @@ def _save(data: list[dict], merge: bool = False) -> int:
             existing = []
         by_id: dict[str, dict] = {s.get("shop_id"): s for s in existing}
         for rec in data:
+            old = by_id.get(rec.get("shop_id"))
+            if old and old.get("status") == "OK" and rec.get("status") != "OK":
+                continue   # 一時的な失敗で良いデータを壊さない（前回の OK を残す）
             by_id[rec.get("shop_id")] = rec   # 今回取得分で上書き／追加
         out = sorted(by_id.values(), key=lambda x: str(x.get("shop_id")))
     else:
@@ -676,7 +759,12 @@ def main():
 
     # --shop-ids 指定時は既存JSONへマージ（全件スクレイプ時は全置換）
     merge = bool(args.shop_ids) and not args.no_merge
-    asyncio.run(main_async(shop_list_hint, merge=merge))
+    try:
+        asyncio.run(main_async(shop_list_hint, merge=merge))
+    except RateLimitExceeded as e:
+        # 途中まで取れた分は10件ごとの中間保存で既存データへマージ済み。全体の置き換えはしない
+        log.error(f"❌ サイトのレート制限が解除されないため中止しました: {e}")
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

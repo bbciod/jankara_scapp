@@ -14,7 +14,7 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 180   # 全200店舗 × (4秒待機 + ページ読込) ≒ 最大90分。念のため3時間
+    timeout-minutes: 180   # 約210店舗 × (8秒待機 + ページ読込) ≒ 約60分。レート制限の待ちも見込んで3時間
 
     permissions:
       contents: write
