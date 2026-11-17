@@ -22,6 +22,8 @@ import json
 import asyncio
 import logging
 import argparse
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.robotparser import RobotFileParser
@@ -99,16 +101,33 @@ def check_robots_once() -> bool:
         return _robots_allowed
     _robots_checked = True
 
+    # RobotFileParser.read() は Accept ヘッダを付けずに取得する。サイトは Accept の無い
+    # リクエストに 403 を返すようになり（2026-11-08〜）、Python は 403 を「全面禁止」と
+    # 解釈するため、許可されているのに Disallow と誤判定して止まっていた。
+    # 自前で取得し、正直な UA と標準的な Accept ヘッダを付けてから中身を解析する。
     rp = RobotFileParser()
     rp.set_url(ROBOTS_URL)
+    req = urllib.request.Request(
+        ROBOTS_URL, headers={"User-Agent": UA_NAME, "Accept": "text/plain,*/*"}
+    )
     try:
-        rp.read()
+        with urllib.request.urlopen(req, timeout=20) as res:
+            body = res.read().decode("utf-8", errors="replace")
+        rp.parse(body.splitlines())
         _robots_allowed = rp.can_fetch(UA_NAME, f"{BASE_URL}/shop/")
         if not _robots_allowed:
             log.error(
                 f"❌ robots.txt により /shop/ へのアクセスは Disallow されています。"
                 f"処理を中断します。"
             )
+    except urllib.error.HTTPError as e:
+        # 中身を読めない＝方針を確認できないので安全側で止める。
+        # 「Disallow」とは原因が違うため、ステータスコードを明記して区別する。
+        log.error(
+            f"❌ robots.txt を取得できませんでした（HTTP {e.code}）。"
+            f"クロール方針を確認できないため処理を中断します。"
+        )
+        _robots_allowed = False
     except Exception as e:
         log.warning(f"robots.txt 取得失敗（ネットワーク等）: {e} → 続行します")
         _robots_allowed = True
